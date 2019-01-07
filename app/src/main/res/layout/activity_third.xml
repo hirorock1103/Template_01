@@ -22,15 +22,18 @@
         style="@style/background_corner_radius_primary_dark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:text="TextView Sample"
-        tools:layout_editor_absoluteX="205dp"
-        tools:layout_editor_absoluteY="14dp" />
+        app:layout_constraintLeft_toRightOf="@+id/title1"
+        app:layout_constraintBottom_toBottomOf="@+id/title1"
+     />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/title2"
         android:text="background_style1"
+        android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="@+id/title1"
         app:layout_constraintTop_toBottomOf="@+id/title1"
         />
@@ -44,6 +47,68 @@
         app:layout_constraintLeft_toLeftOf="@+id/sample1"
         app:layout_constraintBottom_toBottomOf="@+id/title2"
         />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/title3"
+        android:text="h1"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@+id/title1"
+        app:layout_constraintTop_toBottomOf="@+id/title2"
+        />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="e.com"
+        style="@style/h1"
+        app:layout_constraintLeft_toLeftOf="@+id/sample1"
+        app:layout_constraintBottom_toBottomOf="@+id/title3"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/title4"
+        android:text="border_bottom"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@+id/title1"
+        app:layout_constraintTop_toBottomOf="@+id/title3"
+        />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/border_bottom"
+        android:text="e.com"
+        app:layout_constraintLeft_toLeftOf="@+id/sample1"
+        app:layout_constraintBottom_toBottomOf="@+id/title4"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/title5"
+        android:text="background_style1"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@+id/title1"
+        app:layout_constraintTop_toBottomOf="@+id/title4"
+        />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="e.com"
+        app:layout_constraintLeft_toLeftOf="@+id/sample1"
+        app:layout_constraintBottom_toBottomOf="@+id/title5"
+        />
+
+
 
 
 </android.support.constraint.ConstraintLayout>
