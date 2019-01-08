@@ -108,7 +108,46 @@
         app:layout_constraintBottom_toBottomOf="@+id/title5"
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sample1"
+        android:layout_marginTop="10dp"
+        style="@style/bt_style_1"
+        android:id="@+id/sample"
+        app:layout_constraintTop_toBottomOf="@+id/title5"
+        app:layout_constraintLeft_toLeftOf="@+id/title5"/>
 
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sample2"
+        android:layout_marginTop="10dp"
+        android:id="@+id/sample2"
+        style="@style/bt_style_2"
+        app:layout_constraintTop_toBottomOf="@+id/sample"
+        app:layout_constraintLeft_toLeftOf="@+id/title5"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sample3"
+        android:layout_marginTop="10dp"
+        android:id="@+id/sample3"
+        style="@style/bt_style_1_small"
+        app:layout_constraintTop_toBottomOf="@+id/sample2"
+        app:layout_constraintLeft_toLeftOf="@+id/title5"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sample4"
+        android:layout_marginTop="10dp"
+        android:id="@+id/sample4"
+        style="@style/bt_style_2_small"
+        app:layout_constraintTop_toBottomOf="@+id/sample3"
+        app:layout_constraintLeft_toLeftOf="@+id/title5"/>
 
 
 </android.support.constraint.ConstraintLayout>

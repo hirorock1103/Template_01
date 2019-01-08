@@ -25,16 +25,6 @@ public class SecondActivity extends AppCompatActivity {
         ActionBar actionBar = this.getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        Button bt = new Button(this);
-        bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SecondActivity.this, ThirdActivity.class);
-                startActivity(intent);
-            }
-        });
-        addContentView(bt, new LinearLayout.LayoutParams(100,100));
-
         Fragment fragment = new FragMemberList();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.frame, fragment);
