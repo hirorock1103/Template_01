@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     private Button bt_1;
     private Button bt_2;
     private Button bt_3;
+    private Button bt_4;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        bt_4 = findViewById(R.id.bt_4);
+        bt_4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, FifthActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         MemberManager manager = new MemberManager(this);
 
