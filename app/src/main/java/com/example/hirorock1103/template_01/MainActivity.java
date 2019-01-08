@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.hirorock1103.template_01.Fragments.FragTest;
+import com.example.hirorock1103.template_01.Fragments.FragTop;
 import com.example.hirorock1103.template_01.Member.Member;
 import com.example.hirorock1103.template_01.DB.MemberManager;
 
@@ -25,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
         List<Fragment> fragments = getSupportFragmentManager().getFragments();
 
         if(fragments.size() == 0){
-            Fragment fragment = new FragTest();
+            //Fragment fragment = new FragTest();
+            Fragment fragment = new FragTop();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.add(R.id.layout, fragment);
             transaction.commit();
