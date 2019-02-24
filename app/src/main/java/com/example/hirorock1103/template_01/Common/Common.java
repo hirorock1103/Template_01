@@ -1,7 +1,9 @@
 package com.example.hirorock1103.template_01.Common;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
+import android.text.Html;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -108,6 +110,22 @@ public class Common {
             layout.requestFocus();
 
         }
+    }
+    public static void sendMail(Context context,String subject, String contents){
+        Intent emailIntent = new Intent(
+                android.content.Intent.ACTION_SEND);
+        emailIntent.setAction(Intent.ACTION_SEND);
+        emailIntent.setType("message/rfc822");
+        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL,
+                new String[] { "" });
+        emailIntent.putExtra(android.content.Intent.EXTRA_CC, "");
+        emailIntent.putExtra(android.content.Intent.EXTRA_BCC, "");
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
+                subject);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(contents));
+        emailIntent.setType("text/html");
+        context.startActivity(Intent.createChooser(emailIntent,
+                "Send Email Using: "));
     }
 
 }
