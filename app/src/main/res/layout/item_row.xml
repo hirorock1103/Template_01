@@ -3,50 +3,84 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/layout"
+    android:padding="3dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/image"
-        android:src="@drawable/ic_launcher_background"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="title"
-        android:id="@+id/title"
-        app:layout_constraintLeft_toRightOf="@+id/image"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="3dp"
+        >
 
-    <TextView
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="detailsdetailsdetailsdetailsdetailsdetailsdetailsdetailsdetailsdetails"
-        android:textSize="10sp"
-        android:id="@+id/detail"
-        android:singleLine="true"
-        android:ellipsize="end"
 
-        app:layout_constraintLeft_toRightOf="@+id/image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/createdate"
-        android:text="2018/12/23"
-        android:textSize="10sp"
-        android:singleLine="true"
-        android:ellipsize="end"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/title"
-        />
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/image"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="title"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/title"
+                app:layout_constraintLeft_toRightOf="@+id/image"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="detailsdetailsdetailsdetailsdetailsdetailsdetailsdetailsdetailsdetails"
+                android:textSize="12sp"
+                android:id="@+id/detail"
+                android:singleLine="true"
+                android:ellipsize="end"
+
+                app:layout_constraintLeft_toRightOf="@+id/image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/createdate"
+                android:text="2018/12/23"
+                android:textSize="12sp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                app:layout_constraintLeft_toLeftOf="@+id/title"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@mipmap/ic_more"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+
+        </android.support.constraint.ConstraintLayout>
+
+
+
+    </android.support.v7.widget.CardView>
+
+
 
 </android.support.constraint.ConstraintLayout>
