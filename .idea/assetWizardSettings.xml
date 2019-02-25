@@ -33,8 +33,37 @@
                                   </option>
                                   <option name="values">
                                     <map>
+                                      <entry key="outputName" value="ic_like" />
                                       <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="e52c06" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                            <entry key="launcherLegacy">
+                              <value>
+                                <PersistentState>
+                                  <option name="children">
+                                    <map>
+                                      <entry key="clipArt">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="color" value="009125" />
+                                                <entry key="paddingPercent" value="30" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                    </map>
+                                  </option>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="iconShape" value="CIRCLE" />
+                                      <entry key="outputName" value="ic_launcher_green" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -44,7 +73,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputIconType" value="ACTIONBAR" />
+                            <entry key="outputIconType" value="LAUNCHER_LEGACY" />
                           </map>
                         </option>
                       </PersistentState>

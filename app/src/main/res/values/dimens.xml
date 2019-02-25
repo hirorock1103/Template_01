@@ -4,5 +4,9 @@
     <dimen name="Big">30sp</dimen>
     <dimen name="Middiam">20sp</dimen>
     <dimen name="Small">10sp</dimen>
-    
+    <dimen name="TopCardMarginLeft">6dp</dimen>
+    <dimen name="TopCardMarginRight">6dp</dimen>
+    <dimen name="MarginBelowImage">5dp</dimen>
+    <dimen name="IconImageWidth">50dp</dimen>
+    <dimen name="IconImageHeight">50dp</dimen>
 </resources>
