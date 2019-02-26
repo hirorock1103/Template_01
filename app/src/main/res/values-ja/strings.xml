@@ -1,5 +1,14 @@
 <resources>
-    <string name="app_name">Template_01</string>
+    <string name="app_name">Tipsアプリ</string>
+    <string name="create_tips">tips作成</string>
+    <string name="on_progress">進行中</string>
+    <string name="think_later">think later!</string>
+    <string name="dialogTipsTitleAdd">Tips登録</string>
+    <string name="dialogTipsTitleEdit">Tips編集</string>
+    <string name="cancel">cancel</string>
+    <string name="OK">OK</string>
+    <string name="add_complete_msg">登録が完了しました。</string>
+
     <string name="news">Recently I want to go to newyork</string>
     <string name="in_news">Surrender to the music of the night at ‘The Phantom of the Opera,’ the longest-running show in Broadway history. Featuring a swoon-worthy score 7</string>
     <string name="publich_date">2019/01/05</string>

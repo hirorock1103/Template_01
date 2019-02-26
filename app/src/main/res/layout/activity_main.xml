@@ -9,61 +9,133 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/image_icon"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="casual"
+        android:text="@string/app_name"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
+        />
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Memberlist"
-        android:id="@+id/bt_1"
+        android:id="@+id/image_detail"
+        android:text="please fill app details here!"
+        app:layout_constraintTop_toBottomOf="@id/image_icon"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text"
+
         />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View sample"
-        android:id="@+id/bt_2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_1"
-        />
 
-    <Button
-        android:layout_width="wrap_content"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="color sample"
-        android:id="@+id/bt_3"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_2"
-        />
+        android:id="@+id/footer_area1"
+        android:layout_marginTop="50dp"
+        android:paddingBottom="50dp"
+        app:layout_constraintTop_toBottomOf="@id/image_detail"
+        >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="recycler view sample"
-        android:id="@+id/bt_4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_3"
-        />
+        <GridLayout
+            android:rowCount="2"
+            android:layout_weight="8"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:padding="10dp"
+            android:alignmentMode="alignMargins"
+            android:columnOrderPreserved="false"
+            android:columnCount="1"
+            >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="top sample1 - grid"
-        android:id="@+id/bt_5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_4"
-        />
+            <android.support.v7.widget.CardView
+                android:id="@+id/card1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="@drawable/ripple_effect"
+                android:layout_marginLeft="@dimen/TopCardMarginLeft"
+                android:layout_marginRight="@dimen/TopCardMarginRight"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="3dp"
+
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/IconImageWidth"
+                        android:layout_height="@dimen/IconImageHeight"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@mipmap/ic_launcher_green" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/MarginBelowImage"
+                        android:text="@string/create_tips"
+                        android:textAlignment="center" />
+
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="@dimen/TopCardMarginLeft"
+                android:layout_marginRight="@dimen/TopCardMarginRight"
+                app:cardCornerRadius="3dp"
+
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/IconImageWidth"
+                        android:layout_height="@dimen/IconImageHeight"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@mipmap/ic_launcher_green" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/MarginBelowImage"
+                        android:text="@string/on_progress"
+                        android:textAlignment="center" />
+
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+
+        </GridLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+
 
 </android.support.constraint.ConstraintLayout>
