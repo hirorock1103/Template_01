@@ -4,7 +4,7 @@ public class TipsContents {
 
 
     private int id;
-    private String type;
+    private String type;//step, text, image, movie
     private String contents;
     private String moviePath;
     private byte[] image;

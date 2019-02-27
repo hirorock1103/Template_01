@@ -2,12 +2,27 @@
     <string name="app_name">Tips App</string>
     <string name="create_tips">create_tips</string>
     <string name="on_progress">on_progress</string>
+    <string name="create_tip_group">create tip group</string>
     <string name="think_later">think later!</string>
     <string name="dialogTipsTitleAdd">Add Tips</string>
     <string name="dialogTipsTitleEdit">Edit Tips</string>
     <string name="cancel">cancel</string>
     <string name="OK">OK</string>
     <string name="add_complete_msg">add_complete_msg</string>
+    <string name="contents_type_step">step</string><!--step, text, image, movie-->
+    <string name="contents_type_text">text</string>
+    <string name="contents_type_image">image</string>
+    <string name="contents_type_movie">movie</string>
+    <string name="tips_add_form_title">Tipsタイトル</string>
+    <string name="next_action">next action</string>
+    <string name="finish_register">finish register</string>
+
+    <!--dialog commnet-->
+    <string name="comment1">削除してよろしいですか？</string>
+
+    <!--Comment-->
+    <string name="title1">Select your next action!</string>
+
 
     <string name="news">Recently I want to go to newyork</string>
     <string name="in_news">Surrender to the music of the night at ‘The Phantom of the Opera,’ the longest-running show in Broadway history. Featuring a swoon-worthy score 7</string>

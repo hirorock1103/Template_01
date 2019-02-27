@@ -96,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/TopCardMarginLeft"
                 android:layout_marginRight="@dimen/TopCardMarginRight"
                 app:cardCornerRadius="3dp"
@@ -130,6 +130,44 @@
 
             </android.support.v7.widget.CardView>
 
+            <android.support.v7.widget.CardView
+                android:id="@+id/card3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="@dimen/TopCardMarginLeft"
+                android:layout_marginRight="@dimen/TopCardMarginRight"
+                app:cardCornerRadius="3dp"
+
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/IconImageWidth"
+                        android:layout_height="@dimen/IconImageHeight"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@mipmap/ic_launcher_green" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/MarginBelowImage"
+                        android:text="@string/create_tip_group"
+                        android:textAlignment="center" />
+
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
 
 
         </GridLayout>

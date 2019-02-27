@@ -41,8 +41,12 @@ public class MainActivity extends AppCompatActivity implements DialogTips.Dialog
             public void onClick(View v) {
 
                 //dilog
+                /*
                 DialogTips dialogTips = new DialogTips();
                 dialogTips.show(getSupportFragmentManager(), "dialogTips");
+                */
+                Intent intent = new Intent(MainActivity.this, MainTipsAddActivity.class);
+                startActivity(intent);
 
             }
         });
