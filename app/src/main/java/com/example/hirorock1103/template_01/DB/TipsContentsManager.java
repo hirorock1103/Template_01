@@ -36,6 +36,7 @@ public class TipsContentsManager extends MyDbHelper {
             TipsContents contents = new TipsContents();
             contents.setId(c.getInt(c.getColumnIndex(TIPS_CONTENTS_COLUMN_ID)));
             contents.setType(c.getString(c.getColumnIndex(TIPS_CONTENTS_COLUMN_TYPE)));
+            contents.setTipsId(c.getInt(c.getColumnIndex(TIPS_CONTENTS_COLUMN_TIPS_ID)));
             contents.setContents(c.getString(c.getColumnIndex(TIPS_CONTENTS_COLUMN_CONTENTS)));
             contents.setImage(c.getBlob(c.getColumnIndex(TIPS_CONTENTS_COLUMN_IMAGE)));
             contents.setMoviePath(c.getString(c.getColumnIndex(TIPS_CONTENTS_COLUMN_MOVIE_PATH)));
@@ -69,6 +70,7 @@ public class TipsContentsManager extends MyDbHelper {
 
             contents.setId(c.getInt(c.getColumnIndex(TIPS_CONTENTS_COLUMN_ID)));
             contents.setType(c.getString(c.getColumnIndex(TIPS_CONTENTS_COLUMN_TYPE)));
+            contents.setTipsId(c.getInt(c.getColumnIndex(TIPS_CONTENTS_COLUMN_TIPS_ID)));
             contents.setContents(c.getString(c.getColumnIndex(TIPS_CONTENTS_COLUMN_CONTENTS)));
             contents.setImage(c.getBlob(c.getColumnIndex(TIPS_CONTENTS_COLUMN_IMAGE)));
             contents.setMoviePath(c.getString(c.getColumnIndex(TIPS_CONTENTS_COLUMN_MOVIE_PATH)));
@@ -88,6 +90,7 @@ public class TipsContentsManager extends MyDbHelper {
 
         ContentValues values= new ContentValues();
         values.put(TIPS_CONTENTS_COLUMN_TYPE, contents.getType());
+        values.put(TIPS_CONTENTS_COLUMN_TIPS_ID, contents.getTipsId());
         values.put(TIPS_CONTENTS_COLUMN_CONTENTS, contents.getContents());
         values.put(TIPS_CONTENTS_COLUMN_IMAGE, contents.getImage());
         values.put(TIPS_CONTENTS_COLUMN_MOVIE_PATH, contents.getMoviePath());
@@ -106,6 +109,7 @@ public class TipsContentsManager extends MyDbHelper {
 
         ContentValues values= new ContentValues();
         values.put(TIPS_CONTENTS_COLUMN_TYPE, contents.getType());
+        values.put(TIPS_CONTENTS_COLUMN_TIPS_ID, contents.getTipsId());
         values.put(TIPS_CONTENTS_COLUMN_CONTENTS, contents.getContents());
         values.put(TIPS_CONTENTS_COLUMN_IMAGE, contents.getImage());
         values.put(TIPS_CONTENTS_COLUMN_MOVIE_PATH, contents.getMoviePath());

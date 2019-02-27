@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDbHelper extends SQLiteOpenHelper {
 
-    private final static int DBVERSION = 3;
+    private final static int DBVERSION = 4;
     private final static String DBNAME = "TipsApp.db";
     protected final static String TABLE_NAME = "Member";
     protected final static String MEMBER_COLUMN_ID = "id";
@@ -25,6 +25,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     protected final static String TABLE_TIPS_CONTENTS ="TipsContents";
     protected final static String TIPS_CONTENTS_COLUMN_ID = "id";
     protected final static String TIPS_CONTENTS_COLUMN_TYPE ="type";
+    protected final static String TIPS_CONTENTS_COLUMN_TIPS_ID = "tips_id";
     protected final static String TIPS_CONTENTS_COLUMN_CONTENTS = "contents";
     protected final static String TIPS_CONTENTS_COLUMN_MOVIE_PATH = "movie_path";
     protected final static String TIPS_CONTENTS_COLUMN_IMAGE ="image";
@@ -65,6 +66,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         query ="CREATE TABLE IF NOT EXISTS " + TABLE_TIPS_CONTENTS +"("+
                 TIPS_CONTENTS_COLUMN_ID +" integer primary key autoincrement, " +
                 TIPS_CONTENTS_COLUMN_TYPE +" text, " +
+                TIPS_CONTENTS_COLUMN_TIPS_ID +" integer, " +
                 TIPS_CONTENTS_COLUMN_CONTENTS +" text, " +
                 TIPS_CONTENTS_COLUMN_MOVIE_PATH +" text, " +
                 TIPS_CONTENTS_COLUMN_IMAGE +" blob, " +

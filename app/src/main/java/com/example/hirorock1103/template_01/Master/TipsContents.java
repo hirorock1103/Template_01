@@ -6,6 +6,7 @@ public class TipsContents {
     private int id;
     private String type;//step, text, image, movie
     private String contents;
+    private int tipsId;
     private String moviePath;
     private byte[] image;
     private String createdate;
@@ -56,5 +57,13 @@ public class TipsContents {
 
     public void setCreatedate(String createdate) {
         this.createdate = createdate;
+    }
+
+    public int getTipsId() {
+        return tipsId;
+    }
+
+    public void setTipsId(int tipsId) {
+        this.tipsId = tipsId;
     }
 }

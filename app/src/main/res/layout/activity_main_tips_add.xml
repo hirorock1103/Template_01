@@ -6,26 +6,33 @@
     android:layout_height="match_parent"
     tools:context="com.example.hirorock1103.template_01.MainTipsAddActivity">
 
-
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tips_add_form_title"
-        android:layout_marginLeft="20dp"
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:text="@string/tips_add_form_title"
+        android:id="@+id/tips_add_form_title"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        />
+        >
 
-    <EditText
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/edit_title"
-        app:layout_constraintLeft_toRightOf="@id/tips_add_form_title"
-        app:layout_constraintTop_toTopOf="@id/tips_add_form_title"
-        app:layout_constraintBottom_toBottomOf="@id/tips_add_form_title"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tips_add_form_title"
+            />
+
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_title"
+            />
+
+    </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -90,6 +97,16 @@
 
 
     </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/result_area"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/bt_area"
+        >
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -97,7 +114,7 @@
         android:layout_marginTop="20dp"
         android:id="@+id/area"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/bt_area"
+        app:layout_constraintTop_toBottomOf="@id/result_area"
         >
 
 
