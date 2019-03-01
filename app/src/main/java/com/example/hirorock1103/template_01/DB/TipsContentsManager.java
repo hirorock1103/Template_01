@@ -53,6 +53,43 @@ public class TipsContentsManager extends MyDbHelper {
 
     }
 
+    //get by tips id
+    public List<TipsContents> getListByTipsId(int tipsId){
+
+        List<TipsContents> list = new ArrayList<>();
+
+        String query ="SELECT * FROM " + TABLE_TIPS_CONTENTS
+                + " WHERE " + TIPS_CONTENTS_COLUMN_TIPS_ID + " = " + tipsId
+                + " ORDER BY " + TIPS_CONTENTS_COLUMN_ID + " ASC";
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        Cursor c = db.rawQuery(query, null);
+
+        c.moveToFirst();
+
+        while(!c.isAfterLast()){
+
+            TipsContents contents = new TipsContents();
+            contents.setId(c.getInt(c.getColumnIndex(TIPS_CONTENTS_COLUMN_ID)));
+            contents.setType(c.getString(c.getColumnIndex(TIPS_CONTENTS_COLUMN_TYPE)));
+            contents.setTipsId(c.getInt(c.getColumnIndex(TIPS_CONTENTS_COLUMN_TIPS_ID)));
+            contents.setContents(c.getString(c.getColumnIndex(TIPS_CONTENTS_COLUMN_CONTENTS)));
+            contents.setImage(c.getBlob(c.getColumnIndex(TIPS_CONTENTS_COLUMN_IMAGE)));
+            contents.setMoviePath(c.getString(c.getColumnIndex(TIPS_CONTENTS_COLUMN_MOVIE_PATH)));
+            contents.setCreatedate(c.getString(c.getColumnIndex(TIPS_CONTENTS_COLUMN_CREATEDATE)));
+
+            list.add(contents);
+            c.moveToNext();
+
+        }
+
+
+        return list;
+
+
+    }
+
     public TipsContents getListById(int id){
 
         String query ="SELECT * FROM " + TABLE_TIPS_CONTENTS + " WHERE " + TIPS_CONTENTS_COLUMN_ID + " = " + id;

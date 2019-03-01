@@ -9,8 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.example.hirorock1103.template_01.DB.TipsContentsManager;
+import com.example.hirorock1103.template_01.DB.TipsManager;
 import com.example.hirorock1103.template_01.Master.Tips;
+import com.example.hirorock1103.template_01.Master.TipsContents;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +32,8 @@ public class MainTipsListActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_view);
 
-        Tips tips1 = new Tips();
-        tips1.setTipsId(1);
-        tips1.setTipsTitle("test1");
-
-        tipsList = new ArrayList<>();
-        tipsList.add(tips1);
+        TipsManager manager = new TipsManager(this);
+        tipsList = manager.getList();
 
         adapter = new MyAdapter(tipsList);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -45,8 +45,13 @@ public class MainTipsListActivity extends AppCompatActivity {
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
+        private TextView title;
+        private TextView detail;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            title = itemView.findViewById(R.id.title);
+            detail = itemView.findViewById(R.id.detail);
         }
     }
 
@@ -72,7 +77,28 @@ public class MainTipsListActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+        public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
+
+            Tips tips = tipsList.get(i);
+            holder.title.setText(tips.getTipsTitle());
+
+            //has detail
+            TipsContentsManager manager = new TipsContentsManager(MainTipsListActivity.this);
+            List<TipsContents> contentsList = manager.getListByTipsId(tips.getTipsId());
+
+            if(contentsList.size() > 0){
+                StringBuilder builder = new StringBuilder();
+                for (TipsContents contents : contentsList){
+                    builder.append(contents.getType() + "(" + contents.getContents() +")\n");
+                }
+                holder.detail.setText(builder.toString());
+            }else{
+                holder.detail.setText(getString(R.string.errorMsg2));
+            }
+
+
+
+
 
         }
 

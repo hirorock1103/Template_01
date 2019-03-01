@@ -23,17 +23,30 @@
     <string name="errorMsg1">値が選択されていません。</string>
     <string name="errorMsg2">値が空白です。</string>
     <string name="errorMsg3">タイトルを入力してください！</string>
+    <string name="errorMsg4">画像データが登録されていません！</string>
 
     <!--dialog commnet-->
     <string name="comment1">削除してよろしいですか？</string>
     <string name="comment2">が選択されました</string>
-
+    <string name="comment3">対象データを削除しました</string>
 
     <!--Comment-->
     <string name="title1">Select your next action!</string>
     <string name="title2">Next, put step title</string>
-    <string name="title3">Push when title is ready</string>
+    <string name="title3">OK</string>
     <string name="title4">How to title is registered</string>
+    <string name="title5">Next, put free text</string>
+    <string name="title6">OK</string>
+    <string name="title7">Free Text Here!</string>
+    <string name="title8">TEXT contents</string>
+    <string name="title9">STEP</string>
+    <string name="title10">Next, choose image</string>
+    <string name="title11">Next, choose movie</string>
+    <string name="title12">find from file</string>
+    <string name="title13">take photo</string>
+    <string name="title14">take movie</string>
+    <string name="title15">PHOTO</string>
+    <string name="title16">MOVIE</string>
 
     <string name="news">Recently I want to go to newyork</string>
     <string name="in_news">Surrender to the music of the night at ‘The Phantom of the Opera,’ the longest-running show in Broadway history. Featuring a swoon-worthy score 7</string>

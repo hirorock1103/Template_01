@@ -12,6 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.hirorock1103.template_01.DB.TipsContentsManager;
+import com.example.hirorock1103.template_01.DB.TipsManager;
+import com.example.hirorock1103.template_01.Master.TipsContents;
 import com.example.hirorock1103.template_01.R;
 
 public class DialogDeleteConfirm extends AppCompatDialogFragment {
@@ -109,6 +112,14 @@ public class DialogDeleteConfirm extends AppCompatDialogFragment {
 
                                 case "deleteView" :
                                     //処理
+                                    resultid = 1;
+
+                                    break;
+
+                                case "tipsContents" :
+                                    //処理
+                                    TipsContentsManager manager = new TipsContentsManager(getContext());
+                                    manager.delete(id);
                                     resultid = 1;
 
                                     break;
