@@ -18,7 +18,7 @@
     <string name="contents_type_movie">movie</string>
     <string name="tips_add_form_title">How to </string>
     <string name="next_action">next action</string>
-    <string name="finish_register">finish register</string>
+    <string name="finish_register">Set Group</string>
 
     <!--error msg-->
     <string name="errorMsg1">値が選択されていません。</string>
@@ -50,6 +50,10 @@
     <string name="title14">take movie</string>
     <string name="title15">PHOTO</string>
     <string name="title16">MOVIE</string>
+    <string name="title17">Tips GROUP</string>
+    <string name="title18">Group名の管理</string>
+    <string name="title19">Tips List</string>
+    <string name="title20">Create New Tips</string>
 
     <string name="news">Recently I want to go to newyork</string>
     <string name="in_news">Surrender to the music of the night at ‘The Phantom of the Opera,’ the longest-running show in Broadway history. Featuring a swoon-worthy score 7</string>

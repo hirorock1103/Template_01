@@ -5,14 +5,20 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.CamcorderProfile;
 import android.media.Image;
+import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -28,7 +34,9 @@ import com.example.hirorock1103.template_01.Common.Common;
 import com.example.hirorock1103.template_01.DB.TipsContentsManager;
 import com.example.hirorock1103.template_01.DB.TipsManager;
 import com.example.hirorock1103.template_01.Dialog.DialogDeleteConfirm;
+import com.example.hirorock1103.template_01.Dialog.DialogGroup;
 import com.example.hirorock1103.template_01.Dialog.DialogNextAction;
+import com.example.hirorock1103.template_01.Dialog.DialogSelectGroup;
 import com.example.hirorock1103.template_01.Dialog.DialogTips;
 import com.example.hirorock1103.template_01.Master.Tips;
 import com.example.hirorock1103.template_01.Master.TipsContents;
@@ -43,7 +51,9 @@ import java.io.InputStream;
 import java.util.List;
 
 public class MainTipsAddActivity extends AppCompatActivity
-        implements DialogNextAction.DialogNextActionListener, DialogDeleteConfirm.DialogDeleteNoticeListener {
+        implements DialogNextAction.DialogNextActionListener,
+        DialogSelectGroup.DialogSelectGroupNoticeListener,
+        DialogDeleteConfirm.DialogDeleteNoticeListener{
 
     /**
      * どのタイミングでscroll view を自動スクロールさせるか
@@ -83,6 +93,12 @@ public class MainTipsAddActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_tips_add);
 
+        //menu
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        setTitle(getString(R.string.title20));
+
+
         //set view
         howtotitle = findViewById(R.id.edit_title);
         btNextAction = findViewById(R.id.next_action);
@@ -119,12 +135,30 @@ public class MainTipsAddActivity extends AppCompatActivity
         bt_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //select
+
+                DialogSelectGroup dialogGroup = new DialogSelectGroup();
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", tipsId);
+                dialogGroup.setArguments(bundle);
+                dialogGroup.show(getSupportFragmentManager(),"dialog");
 
             }
         });
 
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     public void DialogNextActionResultNotice(String type) {
@@ -503,6 +537,8 @@ public class MainTipsAddActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
+
+
             }
         });
 
@@ -824,5 +860,9 @@ public class MainTipsAddActivity extends AppCompatActivity
         return cursor.getString(column_index);
     }
 
-
+    @Override
+    public void DialogSelectGroupNoticeResult() {
+        View view = findViewById(android.R.id.content);
+        Snackbar.make(view, getString(R.string.errorMsg1), Snackbar.LENGTH_SHORT).show();
+    }
 }

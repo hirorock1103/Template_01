@@ -21,15 +21,6 @@
             android:padding="3dp"
             >
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/image"
-                android:src="@drawable/ic_launcher_background"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -37,23 +28,99 @@
                 android:text="title"
                 android:layout_marginLeft="5dp"
                 android:id="@+id/title"
-                app:layout_constraintLeft_toRightOf="@+id/image"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 />
 
             <TextView
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:text="detailsdetailsdetailsdetailsdetailsdetailsdetailsdetailsdetailsdetails"
                 android:textSize="12sp"
                 android:id="@+id/detail"
                 android:singleLine="true"
                 android:ellipsize="end"
+                app:layout_constraintLeft_toLeftOf="@+id/title"
+                app:layout_constraintTop_toBottomOf="@id/createdate"
 
-                app:layout_constraintLeft_toRightOf="@+id/image"
-                app:layout_constraintBottom_toBottomOf="parent"
                 />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/each_detail"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/detail"
+                app:layout_constraintLeft_toLeftOf="@id/detail"
+                >
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/ic_step_yellow"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/step_count"
+                    android:text="3"
+                    />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/ic_text_yellow"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/colorAccent"
+                    android:id="@+id/text_count"
+                    android:text="3"
+                    />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/ic_cam_yellow"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/colorAccent"
+                    android:id="@+id/video_count"
+                    android:text="3"
+                    />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/ic_photo_yellow"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/colorAccent"
+                    android:id="@+id/photo_count"
+                    android:text="3"
+                    />
+
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"

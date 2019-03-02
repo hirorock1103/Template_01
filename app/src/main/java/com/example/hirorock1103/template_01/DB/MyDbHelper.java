@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDbHelper extends SQLiteOpenHelper {
 
-    private final static int DBVERSION = 8;
+    private final static int DBVERSION = 9;
     private final static String DBNAME = "TipsApp.db";
     protected final static String TABLE_NAME = "Member";
     protected final static String MEMBER_COLUMN_ID = "id";
@@ -18,6 +18,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     //Tips
     protected final static String TABLE_TIPS = "Tips";
     protected final static String TIPS_COLUMN_ID = "id";
+    protected final static String TIPS_COLUMN_GROUP_ID = "group_id";
     protected final static String TIPS_COLUMN_TITLE = "title";
     protected final static String TIPS_COLUMN_CREATEDATE = "createdate";
 
@@ -30,6 +31,11 @@ public class MyDbHelper extends SQLiteOpenHelper {
     protected final static String TIPS_CONTENTS_COLUMN_MOVIE_PATH = "movie_path";
     protected final static String TIPS_CONTENTS_COLUMN_IMAGE ="image";
     protected final static String TIPS_CONTENTS_COLUMN_CREATEDATE="createdate";
+
+    //group
+    protected final static String TABLE_GROUP ="TipsGroup";
+    protected final static String GROUP_COLUMN_ID = "id";
+    protected final static String GROUP_COLUMN_NAME="group_name";
 
     //tag
     protected final static String TABLE_TAG ="Tag";
@@ -82,9 +88,17 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL(query);
 
+        query ="CREATE TABLE IF NOT EXISTS " + TABLE_GROUP +"("+
+                GROUP_COLUMN_ID +" integer primary key autoincrement, " +
+                GROUP_COLUMN_NAME+" text " +
+                ")";
+
+        sqLiteDatabase.execSQL(query);
+
         query ="CREATE TABLE IF NOT EXISTS " + TABLE_TIPS +"("+
                 TIPS_COLUMN_ID +" integer primary key autoincrement, " +
                 TIPS_COLUMN_TITLE +" text, " +
+                TIPS_COLUMN_GROUP_ID +" integer, " +
                 TIPS_COLUMN_CREATEDATE +" text " +
                 ")";
 
@@ -115,6 +129,9 @@ public class MyDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(query);
 
         query = "DROP TABLE IF EXISTS " + TABLE_TIPS_TAG_MTRX;
+        sqLiteDatabase.execSQL(query);
+
+        query = "DROP TABLE IF EXISTS " + TABLE_GROUP;
         sqLiteDatabase.execSQL(query);
 
         onCreate(sqLiteDatabase);

@@ -4,6 +4,7 @@ public class Tips {
 
     private int tipsId;
     private String tipsTitle;
+    private int groupId;
     private String createdate;
 
 
@@ -29,5 +30,13 @@ public class Tips {
 
     public void setCreatedate(String createdate) {
         this.createdate = createdate;
+    }
+
+    public int getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(int groupId) {
+        this.groupId = groupId;
     }
 }

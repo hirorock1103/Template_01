@@ -34,8 +34,6 @@
                                   <option name="values">
                                     <map>
                                       <entry key="outputName" value="ic_like" />
-                                      <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="e52c06" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -51,7 +49,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="color" value="d1c0df" />
+                                                <entry key="color" value="009125" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -62,7 +60,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_close_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/toggle/ic_star_border_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -73,7 +71,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="outputName" value="ic_cancel_none" />
+                                      <entry key="outputName" value="ic_group" />
                                     </map>
                                   </option>
                                 </PersistentState>

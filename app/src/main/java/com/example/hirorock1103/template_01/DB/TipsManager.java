@@ -36,6 +36,7 @@ public class TipsManager extends MyDbHelper {
 
             tips.setTipsId(c.getInt(c.getColumnIndex(TIPS_COLUMN_ID)));
             tips.setTipsTitle(c.getString(c.getColumnIndex(TIPS_COLUMN_TITLE)));
+            tips.setGroupId(c.getInt(c.getColumnIndex(TIPS_COLUMN_GROUP_ID)));
             tips.setCreatedate(c.getString(c.getColumnIndex(TIPS_COLUMN_CREATEDATE)));
 
             list.add(tips);
@@ -43,9 +44,7 @@ public class TipsManager extends MyDbHelper {
 
         }
 
-
         return list;
-
 
     }
 
@@ -66,7 +65,10 @@ public class TipsManager extends MyDbHelper {
 
             tips.setTipsId(c.getInt(c.getColumnIndex(TIPS_COLUMN_ID)));
             tips.setTipsTitle(c.getString(c.getColumnIndex(TIPS_COLUMN_TITLE)));
+            tips.setGroupId(c.getInt(c.getColumnIndex(TIPS_COLUMN_GROUP_ID)));
             tips.setCreatedate(c.getString(c.getColumnIndex(TIPS_COLUMN_CREATEDATE)));
+
+            c.moveToNext();
 
         }
 
@@ -83,6 +85,7 @@ public class TipsManager extends MyDbHelper {
 
         ContentValues values= new ContentValues();
         values.put(TIPS_COLUMN_TITLE, tips.getTipsTitle());
+        values.put(TIPS_COLUMN_GROUP_ID, tips.getGroupId());
         values.put(TIPS_COLUMN_CREATEDATE, Common.formatDate(new Date(), Common.DB_DATE_FORMAT));
 
         SQLiteDatabase db = getWritableDatabase();
@@ -99,7 +102,7 @@ public class TipsManager extends MyDbHelper {
 
         ContentValues values= new ContentValues();
         values.put(TIPS_COLUMN_TITLE, tips.getTipsTitle());
-
+        values.put(TIPS_COLUMN_GROUP_ID, tips.getGroupId());
         SQLiteDatabase db = getWritableDatabase();
 
         String[] args = {String.valueOf(tips.getTipsId())};

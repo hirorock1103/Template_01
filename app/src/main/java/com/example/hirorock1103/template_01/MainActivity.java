@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements DialogTips.Dialog
 
     private CardView card1;
     private CardView card2;
+    private CardView card3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements DialogTips.Dialog
 
         card1 = findViewById(R.id.card1);
         card2 = findViewById(R.id.card2);
+        card3 = findViewById(R.id.card3);
 
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +61,13 @@ public class MainActivity extends AppCompatActivity implements DialogTips.Dialog
             }
         });
 
-
+        card3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MainGroupListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

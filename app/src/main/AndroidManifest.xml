@@ -22,7 +22,8 @@
         <activity android:name=".FifthActivity" />
         <activity android:name=".MainSampleActivity" />
         <activity android:name=".MainTipsListActivity" />
-        <activity android:name=".MainTipsAddActivity"></activity>
+        <activity android:name=".MainTipsAddActivity" />
+        <activity android:name=".MainGroupListActivity"></activity>
     </application>
 
 </manifest>
