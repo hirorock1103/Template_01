@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Tipsアプリ</string>
     <string name="create_tips">tips作成</string>
-    <string name="on_progress">進行中</string>
-    <string name="create_tip_group">create tip group</string>
+    <string name="on_progress">Tips List</string>
+    <string name="create_tip_group">TipsGroup</string>
     <string name="think_later">think later!</string>
     <!--dialog-->
     <string name="dialogTipsTitleAdd">Add Tips</string>
@@ -16,8 +16,9 @@
     <string name="contents_type_image">take image</string>
     <string name="contents_type_movie">take movie</string>
     <string name="tips_add_form_title">How to </string>
-    <string name="next_action">next action</string>
-    <string name="finish_register">Set Group</string>
+    <string name="tips_group">Group </string>
+    <string name="next_action">Next Action</string>
+    <string name="finish_register">Change Group</string>
 
     <!--error msg-->
     <string name="errorMsg1">値が選択されていません。</string>
@@ -29,6 +30,7 @@
     <string name="comment1">削除してよろしいですか？</string>
     <string name="comment2">が選択されました</string>
     <string name="comment3">対象データを削除しました</string>
+    <string name="comment4">更新しました</string>
 
     <!--Comment-->
     <string name="title1">Select your next action!</string>

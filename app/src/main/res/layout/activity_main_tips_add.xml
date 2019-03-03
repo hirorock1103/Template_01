@@ -45,13 +45,44 @@
 
             </LinearLayout>
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/tips_category"
+                app:layout_constraintTop_toBottomOf="@id/tips_add_form_title"
+                app:layout_constraintLeft_toLeftOf="@id/tips_add_form_title"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tips_group"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="android"
+                    style="@style/background_corner_radius_primary_dark"
+                    android:id="@+id/group_name"
+                    />
+
+            </LinearLayout>
+
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="30dp"
                 android:id="@+id/bt_area"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/tips_add_form_title"
+                app:layout_constraintTop_toBottomOf="@id/tips_category"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 >

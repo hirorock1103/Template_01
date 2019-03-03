@@ -37,6 +37,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
                 android:text="test"
+                android:autoLink="web"
                 android:textSize="14sp"
                 android:id="@+id/text_contents"
                 style="@style/Base.TextAppearance.AppCompat.Title"

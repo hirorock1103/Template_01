@@ -8,4 +8,5 @@
     <color name="layoutColor">#FAFAFA</color>
     <color name="colorRipple">#A9A9F5</color>
     <color name="borderColor">#50b96c</color>
+    <color name="background1">#eeffe8</color>
 </resources>

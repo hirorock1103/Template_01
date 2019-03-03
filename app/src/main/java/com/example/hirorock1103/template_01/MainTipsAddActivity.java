@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.CursorLoader;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import android.widget.VideoView;
 
 import com.example.hirorock1103.template_01.Common.Common;
 import com.example.hirorock1103.template_01.DB.TipsContentsManager;
+import com.example.hirorock1103.template_01.DB.TipsGroupManager;
 import com.example.hirorock1103.template_01.DB.TipsManager;
 import com.example.hirorock1103.template_01.Dialog.DialogDeleteConfirm;
 import com.example.hirorock1103.template_01.Dialog.DialogGroup;
@@ -40,6 +42,7 @@ import com.example.hirorock1103.template_01.Dialog.DialogSelectGroup;
 import com.example.hirorock1103.template_01.Dialog.DialogTips;
 import com.example.hirorock1103.template_01.Master.Tips;
 import com.example.hirorock1103.template_01.Master.TipsContents;
+import com.example.hirorock1103.template_01.Master.TipsGroup;
 
 import org.w3c.dom.Text;
 
@@ -63,6 +66,7 @@ public class MainTipsAddActivity extends AppCompatActivity
     private int tipsId = 0;
 
     private EditText howtotitle;
+    private TextView groupName;
     private LinearLayout btNextAction;
     private LinearLayout bt_ok;
     private LinearLayout resultArea;
@@ -87,6 +91,7 @@ public class MainTipsAddActivity extends AppCompatActivity
     private final static int RESULT_PICK_IMAGE = 1002;
     private final static int PICWIDTH = 900;
     private final static int RESULT_PICK_MOVIE = 2001;
+    private final static int CAMERA_REQUEST_CODE_VEDIO = 2002;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,9 +103,16 @@ public class MainTipsAddActivity extends AppCompatActivity
         actionBar.setDisplayHomeAsUpEnabled(true);
         setTitle(getString(R.string.title20));
 
+        //
+        try{
+            tipsId = getIntent().getExtras().getInt("id");
+        }catch(Exception e){
+            tipsId = 0;
+        }
 
         //set view
         howtotitle = findViewById(R.id.edit_title);
+        groupName = findViewById(R.id.group_name);
         btNextAction = findViewById(R.id.next_action);
         bt_ok = findViewById(R.id.bt_ok);
         resultArea = findViewById(R.id.result_area);
@@ -146,6 +158,34 @@ public class MainTipsAddActivity extends AppCompatActivity
             }
         });
 
+
+        //set data
+        groupName.setText("--");
+
+        if(tipsId > 0){
+            //set title
+            Tips tips = tipsManager.getListById(tipsId);
+            howtotitle.setText(tips.getTipsTitle());
+            howtotitle.setEnabled(false);
+
+            //set group
+            if(tips.getGroupId() > 0){
+                TipsGroupManager groupManager = new TipsGroupManager(this);
+                TipsGroup g = groupManager.getListById(tips.getGroupId());
+                groupName.setText(g.getGroupName());
+            }else{
+                groupName.setText("--");
+            }
+
+            //set list
+            this.reloadContents(tipsId);
+
+            howtotitle.setFocusable(false);
+
+        }
+
+        //hide keyboard
+        //Common.hideKeyboard(this);
 
     }
 
@@ -333,9 +373,16 @@ public class MainTipsAddActivity extends AppCompatActivity
                         view = LayoutInflater.from(MainTipsAddActivity.this).inflate(R.layout.item_row_movie, null);
                         VideoView movie = view.findViewById(R.id.movie);
                         if(contents.getMoviePath() != null){
-                            movie.setMediaController(new MediaController(MainTipsAddActivity.this));
-                            movie.setVideoURI(Uri.parse(contents.getMoviePath()));
-                            movie.seekTo(1);
+                            try{
+                                Common.log("item lsit - movie path:" + contents.getMoviePath());
+                                String path = contents.getMoviePath();
+                                movie.setMediaController(new MediaController(MainTipsAddActivity.this));
+                                movie.setVideoURI(Uri.parse(path));
+                                movie.seekTo(1);
+                            }catch(Exception e){
+                                Common.log(e.getMessage());
+                            }
+
                         }
 
                         ImageView delete4 = view.findViewById(R.id.delete);
@@ -537,7 +584,11 @@ public class MainTipsAddActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-
+                Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(takeVideoIntent,
+                            CAMERA_REQUEST_CODE_VEDIO);
+                }
 
             }
         });
@@ -818,7 +869,22 @@ public class MainTipsAddActivity extends AppCompatActivity
                 //View view = findViewById(android.R.id.content);
                 Uri uri = data.getData();
                 String path = uri.toString();
+                //other path
+                String path1 = uri.getPath();
+                String path2 = getRealPathFromURI(uri);
+                String path3 = new File(path).getPath();
+                //
                 videoPath = path;
+
+                Common.log("videoPath:" + videoPath);
+
+                /*
+                *
+                * String UrlPath = "android.resource://" + getPackageName() + "/"+ R.raw.your_video_name;
+                * Uri video_uri = Uri.parse(UrlPath);
+                * */
+
+                //path = path;
 
                 /* confirm
                 Common.log("path:" + path);
@@ -846,23 +912,58 @@ public class MainTipsAddActivity extends AppCompatActivity
                 }
 
 
+            }else if(requestCode == CAMERA_REQUEST_CODE_VEDIO){
+                Common.log("camera");
+                //https://stackoverflow.com/questions/10278865/record-save-and-play-a-video-in-android
+                Uri uri = data.getData();
+                String path = uri.toString();
+                videoPath = path;
+                try{
+
+                    videoConfirmView.setVisibility(View.VISIBLE);
+                    videoConfirmView.setVideoURI(Uri.parse(path.toString()));
+                    videoConfirmView.setMediaController(new MediaController(MainTipsAddActivity.this));
+                    videoConfirmView.seekTo(1);
+
+                }catch (Exception e){
+                    Common.log(e.getMessage());
+                    videoPath = "";
+                }
+                //String path = Utils.getRealPathFromURI(videoUri, this);
+
             }
         }
 
     }
 
-    public String getRealPathFromURI(Uri contentUri)
-    {
-        String[] proj = { MediaStore.Audio.Media.DATA };
-        Cursor cursor = managedQuery(contentUri, proj, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
+    private String getRealPathFromURI(Uri contentUri) {
+        String[] proj = { MediaStore.Images.Media.DATA };
+        CursorLoader loader = new CursorLoader(MainTipsAddActivity.this, contentUri, proj, null, null, null);
+        Cursor cursor = loader.loadInBackground();
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
-        return cursor.getString(column_index);
+        String result = cursor.getString(column_index);
+        cursor.close();
+        return result;
     }
+
 
     @Override
     public void DialogSelectGroupNoticeResult() {
+
         View view = findViewById(android.R.id.content);
-        Snackbar.make(view, getString(R.string.errorMsg1), Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(view, getString(R.string.comment4), Snackbar.LENGTH_SHORT).show();
+
+        //Tips
+        TipsGroupManager groupManager = new TipsGroupManager(MainTipsAddActivity.this);
+        Tips tips = tipsManager.getListById(tipsId);
+        if(tips.getGroupId() > 0){
+            TipsGroup group = groupManager.getListById(tips.getGroupId());
+            groupName.setText(group.getGroupName());
+        }else{
+            groupName.setText("--");
+        }
+
+
     }
 }

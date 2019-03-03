@@ -124,6 +124,14 @@ public class DialogDeleteConfirm extends AppCompatDialogFragment {
 
                                     break;
 
+                                case "tips":
+                                    TipsContentsManager contentsManager = new TipsContentsManager(getContext());
+                                    TipsManager tipsManager = new TipsManager(getContext());
+                                    tipsManager.delete(id);
+                                    resultid = 1;
+
+                                    break;
+
 
                             }
 

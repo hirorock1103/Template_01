@@ -1,38 +1,47 @@
 package com.example.hirorock1103.template_01;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.hirorock1103.template_01.Common.Common;
 import com.example.hirorock1103.template_01.DB.TipsContentsManager;
+import com.example.hirorock1103.template_01.DB.TipsGroupManager;
 import com.example.hirorock1103.template_01.DB.TipsManager;
+import com.example.hirorock1103.template_01.Dialog.DialogDeleteConfirm;
 import com.example.hirorock1103.template_01.Master.Tips;
 import com.example.hirorock1103.template_01.Master.TipsContents;
+import com.example.hirorock1103.template_01.Master.TipsGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainTipsListActivity extends AppCompatActivity {
+public class MainTipsListActivity extends AppCompatActivity implements DialogDeleteConfirm.DialogDeleteNoticeListener {
 
     private List<Tips> tipsList;
     private RecyclerView recyclerView;
     private MyAdapter adapter;
 
+    private int selectedItemid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_list_template01);
-
 
         //menu
         ActionBar actionBar = getSupportActionBar();
@@ -61,23 +70,37 @@ public class MainTipsListActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void deleteResultNotice(int order) {
+        TipsManager manager = new TipsManager(this);
+        tipsList = manager.getList();
+        adapter.setList(tipsList);
+        adapter.notifyDataSetChanged();
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView title;
         private TextView detail;
+        private TextView createdate;
+        private ImageView btMore;
         private TextView stepCount;
         private TextView textCount;
         private TextView photoCount;
         private TextView videoCount;
+        private ConstraintLayout layout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
+            createdate = itemView.findViewById(R.id.createdate);
             detail = itemView.findViewById(R.id.detail);
+            btMore = itemView.findViewById(R.id.more);
             stepCount = itemView.findViewById(R.id.step_count);
             textCount = itemView.findViewById(R.id.text_count);
             videoCount = itemView.findViewById(R.id.video_count);
             photoCount = itemView.findViewById(R.id.photo_count);
+            layout = itemView.findViewById(R.id.layout);
         }
     }
 
@@ -103,9 +126,9 @@ public class MainTipsListActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
+        public void onBindViewHolder(@NonNull final MyViewHolder holder, int i) {
 
-            Tips tips = tipsList.get(i);
+            final Tips tips = tipsList.get(i);
             holder.title.setText(tips.getTipsTitle());
 
             //has detail
@@ -136,11 +159,9 @@ public class MainTipsListActivity extends AppCompatActivity {
                             break;
 
                     }
-
                 }
             }
 
-            holder.detail.setText("--");
             holder.stepCount.setText(String.valueOf(stepCountNum));
             if(stepCountNum == 0){
                 holder.stepCount.setTextColor(Color.GRAY);
@@ -166,9 +187,30 @@ public class MainTipsListActivity extends AppCompatActivity {
                 holder.videoCount.setTextColor(Color.RED);
             }
 
+            holder.createdate.setText(tips.getCreatedate());
 
+            if(tips.getGroupId() > 0){
+                TipsGroupManager groupManager = new TipsGroupManager(MainTipsListActivity.this);
+                TipsGroup group = groupManager.getListById(tips.getGroupId());
+                holder.detail.setText(group.getGroupName().isEmpty() || group.getGroupName() == null ? "group:取得失敗" : "group:" + group.getGroupName());
+            }else{
+                holder.detail.setText("group:--");
+            }
 
+            holder.btMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    v.showContextMenu();
+                    /*
+                    Intent intent = new Intent(MainTipsListActivity.this, MainTipsAddActivity.class);
+                    intent.putExtra("id", tips.getTipsId());
+                    startActivity(intent);
+                    */
+                }
+            });
 
+            holder.layout.setTag(String.valueOf(tips.getTipsId()));
+            registerForContextMenu(holder.layout);
 
         }
 
@@ -178,5 +220,49 @@ public class MainTipsListActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        selectedItemid = Integer.parseInt(v.getTag().toString());
+        getMenuInflater().inflate(R.menu.option_menu_1, menu);
+    }
 
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+
+            case R.id.option1:
+
+                Intent intent = new Intent(MainTipsListActivity.this, MainTipsAddActivity.class);
+                intent.putExtra("id", selectedItemid);
+                startActivity(intent);
+
+                return true;
+
+            case R.id.option2:
+
+                DialogDeleteConfirm deleteConfirm = new DialogDeleteConfirm();
+                Bundle bundle = new Bundle();
+                bundle.putString("dataType", "tips");
+                bundle.putInt("id", selectedItemid);
+                deleteConfirm.setArguments(bundle);
+                deleteConfirm.show(getSupportFragmentManager(), "dialog");
+
+                return true;
+
+        }
+
+        return super.onContextItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        TipsManager manager = new TipsManager(this);
+        tipsList = manager.getList();
+        adapter.setList(tipsList);
+        adapter.notifyDataSetChanged();
+
+    }
 }

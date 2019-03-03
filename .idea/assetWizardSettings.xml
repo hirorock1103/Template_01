@@ -50,6 +50,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="009125" />
+                                                <entry key="paddingPercent" value="30" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -60,7 +61,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/toggle/ic_star_border_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_create_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -70,8 +71,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="iconShape" value="NONE" />
-                                      <entry key="outputName" value="ic_group" />
+                                      <entry key="iconShape" value="CIRCLE" />
+                                      <entry key="outputName" value="ic_tips_image1" />
                                     </map>
                                   </option>
                                 </PersistentState>
