@@ -47,7 +47,44 @@ public class TipsManager extends MyDbHelper {
         return list;
 
     }
+    public List<Tips> getList(int groupId){
 
+        List<Tips> list = new ArrayList<>();
+
+        String query ="";
+
+        if(groupId > 0){
+            query ="SELECT * FROM " + TABLE_TIPS
+                    + " WHERE " + TIPS_COLUMN_GROUP_ID + " = " + groupId
+                    + " ORDER BY " + TIPS_COLUMN_ID + " ASC";
+        }else{
+            query ="SELECT * FROM " + TABLE_TIPS
+                    + " ORDER BY " + TIPS_COLUMN_ID + " ASC";
+        }
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        Cursor c = db.rawQuery(query, null);
+
+        c.moveToFirst();
+
+        while(!c.isAfterLast()){
+
+            Tips tips = new Tips();
+
+            tips.setTipsId(c.getInt(c.getColumnIndex(TIPS_COLUMN_ID)));
+            tips.setTipsTitle(c.getString(c.getColumnIndex(TIPS_COLUMN_TITLE)));
+            tips.setGroupId(c.getInt(c.getColumnIndex(TIPS_COLUMN_GROUP_ID)));
+            tips.setCreatedate(c.getString(c.getColumnIndex(TIPS_COLUMN_CREATEDATE)));
+
+            list.add(tips);
+            c.moveToNext();
+
+        }
+
+        return list;
+
+    }
 
     //get tips
     public Tips getListById(int id){

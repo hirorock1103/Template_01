@@ -32,6 +32,8 @@ import java.util.List;
 
 public class MainTipsListActivity extends AppCompatActivity implements DialogDeleteConfirm.DialogDeleteNoticeListener {
 
+    private int groupId = 0;
+
     private List<Tips> tipsList;
     private RecyclerView recyclerView;
     private MyAdapter adapter;
@@ -43,15 +45,29 @@ public class MainTipsListActivity extends AppCompatActivity implements DialogDel
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_list_template01);
 
+        String groupName = "";
+        try{
+            groupId = getIntent().getExtras().getInt("groupId");
+            if(groupId > 0){
+                TipsGroupManager tipsGroupManager = new TipsGroupManager(this);
+                TipsGroup group = tipsGroupManager.getListById(groupId);
+                groupName = group.getGroupName();
+            }
+        }catch (Exception e){
+            Common.log(e.getMessage());
+            groupId = 0;
+        }
+
         //menu
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        setTitle(getString(R.string.title19));
+
+        setTitle(groupName != null && groupName.isEmpty() == false ? getString(R.string.title19) + "(" + groupName + ")" : getString(R.string.title19));
 
         recyclerView = findViewById(R.id.recycler_view);
 
         TipsManager manager = new TipsManager(this);
-        tipsList = manager.getList();
+        tipsList = manager.getList(groupId);
 
         adapter = new MyAdapter(tipsList);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -73,7 +89,7 @@ public class MainTipsListActivity extends AppCompatActivity implements DialogDel
     @Override
     public void deleteResultNotice(int order) {
         TipsManager manager = new TipsManager(this);
-        tipsList = manager.getList();
+        tipsList = manager.getList(groupId);
         adapter.setList(tipsList);
         adapter.notifyDataSetChanged();
     }
@@ -192,7 +208,7 @@ public class MainTipsListActivity extends AppCompatActivity implements DialogDel
             if(tips.getGroupId() > 0){
                 TipsGroupManager groupManager = new TipsGroupManager(MainTipsListActivity.this);
                 TipsGroup group = groupManager.getListById(tips.getGroupId());
-                holder.detail.setText(group.getGroupName().isEmpty() || group.getGroupName() == null ? "group:取得失敗" : "group:" + group.getGroupName());
+                holder.detail.setText(group.getGroupName() == null ? "group:取得失敗" : "group:" + group.getGroupName());
             }else{
                 holder.detail.setText("group:--");
             }
@@ -201,14 +217,16 @@ public class MainTipsListActivity extends AppCompatActivity implements DialogDel
                 @Override
                 public void onClick(View v) {
                     v.showContextMenu();
-                    /*
+                }
+            });
+            holder.layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
                     Intent intent = new Intent(MainTipsListActivity.this, MainTipsAddActivity.class);
                     intent.putExtra("id", tips.getTipsId());
                     startActivity(intent);
-                    */
                 }
             });
-
             holder.layout.setTag(String.valueOf(tips.getTipsId()));
             registerForContextMenu(holder.layout);
 
@@ -260,7 +278,7 @@ public class MainTipsListActivity extends AppCompatActivity implements DialogDel
     protected void onResume() {
         super.onResume();
         TipsManager manager = new TipsManager(this);
-        tipsList = manager.getList();
+        tipsList = manager.getList(groupId);
         adapter.setList(tipsList);
         adapter.notifyDataSetChanged();
 

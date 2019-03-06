@@ -25,12 +25,18 @@
     <string name="errorMsg2">値が空白です。</string>
     <string name="errorMsg3">タイトルを入力してください！</string>
     <string name="errorMsg4">画像データが登録されていません！</string>
+    <string name="errorMsg5">HowToタイトルが未登録です！</string>
 
     <!--dialog commnet-->
     <string name="comment1">削除してよろしいですか？</string>
     <string name="comment2">が選択されました</string>
     <string name="comment3">対象データを削除しました</string>
     <string name="comment4">更新しました</string>
+    <string name="comment5">タイトルの編集を有効にしました</string>
+    <string name="comment6">登録しました</string>
+
+    <!--menu_title-->
+    <string name="menu_title1">編集する</string>
 
     <!--Comment-->
     <string name="title1">Select your next action!</string>
@@ -53,6 +59,7 @@
     <string name="title18">Group名の管理</string>
     <string name="title19">Tips List</string>
     <string name="title20">Create New Tips</string>
+    <string name="title21">Contents Edit</string>
 
     <string name="news">Recently I want to go to newyork</string>
     <string name="in_news">Surrender to the music of the night at ‘The Phantom of the Opera,’ the longest-running show in Broadway history. Featuring a swoon-worthy score 7</string>

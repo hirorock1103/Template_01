@@ -6,6 +6,7 @@ public class JoinedData {
     public static class GroupCount{
 
         private int count;
+        private int groupId;
         private String groupName;
 
         public int getCount() {
@@ -22,6 +23,14 @@ public class JoinedData {
 
         public void setGroupName(String groupName) {
             this.groupName = groupName;
+        }
+
+        public int getGroupId() {
+            return groupId;
+        }
+
+        public void setGroupId(int groupId) {
+            this.groupId = groupId;
         }
     }
 

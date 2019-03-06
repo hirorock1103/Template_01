@@ -21,11 +21,11 @@
                 app:layout_constraintTop_toTopOf="parent"
                 >
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@mipmap/ic_group"
-                    />
+                <!--<ImageView-->
+                    <!--android:layout_width="30dp"-->
+                    <!--android:layout_height="30dp"-->
+                    <!--android:src="@mipmap/ic_group"-->
+                    <!--/>-->
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -1,6 +1,8 @@
 package com.example.hirorock1103.template_01;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +10,9 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +20,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.hirorock1103.template_01.DB.TipsGroupManager;
+import com.example.hirorock1103.template_01.Dialog.DialogDeleteConfirm;
 import com.example.hirorock1103.template_01.Dialog.DialogGroup;
 import com.example.hirorock1103.template_01.Master.JoinedData;
 
 import java.util.List;
 
-public class MainGroupListActivity extends AppCompatActivity implements DialogGroup.DialogGroupNoticeListener {
+public class MainGroupListActivity extends AppCompatActivity
+        implements DialogGroup.DialogGroupNoticeListener,DialogDeleteConfirm.DialogDeleteNoticeListener {
 
     //data set
     private List<JoinedData.GroupCount> groupList;
@@ -35,6 +41,9 @@ public class MainGroupListActivity extends AppCompatActivity implements DialogGr
 
     //manager
     private TipsGroupManager groupManager;
+
+    //selected Item
+    private int selectedId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,15 +128,24 @@ public class MainGroupListActivity extends AppCompatActivity implements DialogGr
 
     }
 
+    @Override
+    public void deleteResultNotice(int order) {
+
+        reloadView();
+
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView title;
         private TextView count;
+        private ConstraintLayout layout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
             count = itemView.findViewById(R.id.tips_count);
+            layout = itemView.findViewById(R.id.layout);
         }
     }
 
@@ -157,9 +175,21 @@ public class MainGroupListActivity extends AppCompatActivity implements DialogGr
         public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
 
             JoinedData.GroupCount groupCount = groupList.get(i);
-
             holder.title.setText(groupCount.getGroupName());
             holder.count.setText(String.valueOf(groupCount.getCount()));
+            final int groupId = groupCount.getGroupId();
+
+            holder.layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainGroupListActivity.this, MainTipsListActivity.class);
+                    intent.putExtra("groupId", groupId);
+                    startActivity(intent);
+                }
+            });
+
+            holder.layout.setTag(String.valueOf(groupCount.getGroupId()));
+            registerForContextMenu(holder.layout);
 
         }
 
@@ -167,8 +197,35 @@ public class MainGroupListActivity extends AppCompatActivity implements DialogGr
         public int getItemCount() {
             return groupList.size();
         }
+
+
+
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        selectedId = Integer.parseInt(v.getTag().toString());
+        getMenuInflater().inflate(R.menu.option_menu_1, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
 
 
+
+        switch (item.getItemId()){
+            case R.id.option1:
+
+                DialogDeleteConfirm deleteConfirm = new DialogDeleteConfirm();
+                Bundle bundle = new Bundle();
+                bundle.putString("dataType","tipsGroup");
+                bundle.putInt("id",selectedId);
+                deleteConfirm.setArguments(bundle);
+                deleteConfirm.show(getSupportFragmentManager(), "dialogDelete");
+
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
 }

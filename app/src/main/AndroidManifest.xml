@@ -22,9 +22,10 @@
         <activity android:name=".FifthActivity" />
         <activity android:name=".MainSampleActivity" />
         <activity android:name=".MainTipsListActivity" />
-        <activity android:name=".MainTipsAddActivity" />
+        <activity android:name=".MainTipsAddActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity android:name=".MainGroupListActivity"></activity>
     </application>
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-feature

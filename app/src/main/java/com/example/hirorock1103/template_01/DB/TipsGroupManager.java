@@ -25,6 +25,7 @@ public class TipsGroupManager extends MyDbHelper {
         JoinedData.GroupCount groupCount = new JoinedData.GroupCount();
 
         String query = "SELECT count(*) as count, " +
+                TABLE_GROUP + "." + GROUP_COLUMN_ID + " as GroupId, " +
                 TABLE_GROUP + "." + GROUP_COLUMN_NAME + " as Groupname " +
                 " FROM " + TABLE_TIPS +
                 " INNER JOIN " + TABLE_GROUP + " ON " + TABLE_TIPS + "." + TIPS_COLUMN_GROUP_ID + " = " + TABLE_GROUP + "." + GROUP_COLUMN_ID +
@@ -37,6 +38,7 @@ public class TipsGroupManager extends MyDbHelper {
 
         while(!c.isAfterLast()){
 
+            groupCount.setGroupId(c.getInt(c.getColumnIndex("GroupId")));
             groupCount.setCount(c.getInt(c.getColumnIndex("count")));
             groupCount.setGroupName(c.getString(c.getColumnIndex("Groupname")));
             c.moveToNext();
@@ -59,6 +61,7 @@ public class TipsGroupManager extends MyDbHelper {
             JoinedData.GroupCount groupCount = new JoinedData.GroupCount();
 
             query = "SELECT count(*) as count, " +
+                    TABLE_GROUP + "." + GROUP_COLUMN_ID + " as GroupId, " +
                     TABLE_GROUP + "." + GROUP_COLUMN_NAME + " as Groupname " +
                     " FROM " + TABLE_TIPS +
                     " INNER JOIN " + TABLE_GROUP + " ON " + TABLE_TIPS + "." + TIPS_COLUMN_GROUP_ID + " = " + TABLE_GROUP + "." + GROUP_COLUMN_ID +
@@ -71,6 +74,7 @@ public class TipsGroupManager extends MyDbHelper {
             if(c.getCount() > 0){
                 while(!c.isAfterLast()){
 
+                    groupCount.setGroupId(c.getInt(c.getColumnIndex("GroupId")));
                     groupCount.setCount(c.getInt(c.getColumnIndex("count")));
                     groupCount.setGroupName(c.getString(c.getColumnIndex("Groupname")));
                     list.add(groupCount);
@@ -78,6 +82,7 @@ public class TipsGroupManager extends MyDbHelper {
                 }
             }else{
                 groupCount.setGroupName(group.getGroupName());
+                groupCount.setGroupId(group.getId());
                 groupCount.setCount(0);
                 list.add(groupCount);
             }

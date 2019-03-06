@@ -11,11 +11,15 @@ import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.CursorLoader;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
@@ -35,6 +39,7 @@ import com.example.hirorock1103.template_01.Common.Common;
 import com.example.hirorock1103.template_01.DB.TipsContentsManager;
 import com.example.hirorock1103.template_01.DB.TipsGroupManager;
 import com.example.hirorock1103.template_01.DB.TipsManager;
+import com.example.hirorock1103.template_01.Dialog.DialogContents;
 import com.example.hirorock1103.template_01.Dialog.DialogDeleteConfirm;
 import com.example.hirorock1103.template_01.Dialog.DialogGroup;
 import com.example.hirorock1103.template_01.Dialog.DialogNextAction;
@@ -65,7 +70,11 @@ public class MainTipsAddActivity extends AppCompatActivity
 
     private int tipsId = 0;
 
+    //context menu contents id
+    private int selectedContentsId = 0;
+
     private EditText howtotitle;
+    private ImageView update;
     private TextView groupName;
     private LinearLayout btNextAction;
     private LinearLayout bt_ok;
@@ -112,6 +121,7 @@ public class MainTipsAddActivity extends AppCompatActivity
 
         //set view
         howtotitle = findViewById(R.id.edit_title);
+        update = findViewById(R.id.update);
         groupName = findViewById(R.id.group_name);
         btNextAction = findViewById(R.id.next_action);
         bt_ok = findViewById(R.id.bt_ok);
@@ -148,16 +158,55 @@ public class MainTipsAddActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 //select
+                if(howtotitle.getText().toString().isEmpty() == false){
 
-                DialogSelectGroup dialogGroup = new DialogSelectGroup();
-                Bundle bundle = new Bundle();
-                bundle.putInt("id", tipsId);
-                dialogGroup.setArguments(bundle);
-                dialogGroup.show(getSupportFragmentManager(),"dialog");
+                    if(tipsId == 0){
+                        Tips tips = new Tips();
+                        tips.setTipsTitle(howtotitle.getText().toString());
+                        tipsId = (int)tipsManager.addTips(tips);
+                    }
+                    //howtotitle.setEnabled(false);
+
+                    DialogSelectGroup dialogGroup = new DialogSelectGroup();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("id", tipsId);
+                    dialogGroup.setArguments(bundle);
+                    dialogGroup.show(getSupportFragmentManager(),"dialog");
+                }else{
+                    Snackbar.make(v, getString(R.string.errorMsg5), Snackbar.LENGTH_SHORT).show();
+                }
 
             }
         });
 
+        //update
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //update title
+                if(tipsId > 0){
+                    Tips tips = tipsManager.getListById(tipsId);
+                    tips.setTipsTitle(howtotitle.getText().toString());
+                    long resId = tipsManager.updateTips(tips);
+                    if(resId > 0){
+                        Snackbar.make(v, getString(R.string.comment4), Snackbar.LENGTH_SHORT).show();
+                    }
+                }else{
+
+                    if(howtotitle.getText().toString().isEmpty() == false){
+                        Tips tips = new Tips();
+                        tips.setTipsTitle(howtotitle.getText().toString());
+                        long resId = tipsManager.addTips(tips);
+                        if(resId > 0){
+                            tipsId = (int)resId;
+                            Snackbar.make(v, getString(R.string.comment6), Snackbar.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+                }
+            }
+        });
 
         //set data
         groupName.setText("--");
@@ -166,7 +215,7 @@ public class MainTipsAddActivity extends AppCompatActivity
             //set title
             Tips tips = tipsManager.getListById(tipsId);
             howtotitle.setText(tips.getTipsTitle());
-            howtotitle.setEnabled(false);
+            //howtotitle.setEnabled(false);
 
             //set group
             if(tips.getGroupId() > 0){
@@ -180,12 +229,10 @@ public class MainTipsAddActivity extends AppCompatActivity
             //set list
             this.reloadContents(tipsId);
 
-            howtotitle.setFocusable(false);
-
         }
 
         //hide keyboard
-        //Common.hideKeyboard(this);
+        //Common.hideKeyboard(this)
 
     }
 
@@ -216,7 +263,7 @@ public class MainTipsAddActivity extends AppCompatActivity
         if(tipsId > 0){
 
             //タイトル固定
-            howtotitle.setEnabled(false);
+            //howtotitle.setEnabled(false);
 
             //make button next action invalid
             btNextAction.setEnabled(false);
@@ -302,11 +349,13 @@ public class MainTipsAddActivity extends AppCompatActivity
             for (TipsContents contents : list){
                 View view;
                 final int contentsId = contents.getId();
+                ConstraintLayout layout;
                 switch (contents.getType()){
 
                     case "step":
                         view = LayoutInflater.from(MainTipsAddActivity.this).inflate(R.layout.item_row_step, null);
                         //set View
+                        layout = view.findViewById(R.id.layout_b);
                         TextView stepTitle = view.findViewById(R.id.step_title);
                         stepTitle.setText(contents.getContents());
                         final ImageView delete1 = view.findViewById(R.id.delete);
@@ -321,6 +370,8 @@ public class MainTipsAddActivity extends AppCompatActivity
                                 deleteConfirm.show(getSupportFragmentManager(), "delete");
                             }
                         });
+                        layout.setTag(contentsId);
+                        registerForContextMenu(layout);
                         showArea.addView(view);
                         //add view showArea
                         break;
@@ -328,6 +379,7 @@ public class MainTipsAddActivity extends AppCompatActivity
                         //text_contents
                         view = LayoutInflater.from(MainTipsAddActivity.this).inflate(R.layout.item_row_text, null);
                         //add view showArea
+                        layout = view.findViewById(R.id.layout_b);
                         TextView textContents = view.findViewById(R.id.text_contents);
                         textContents.setText(contents.getContents());
                         ImageView delete2 = view.findViewById(R.id.delete);
@@ -342,11 +394,14 @@ public class MainTipsAddActivity extends AppCompatActivity
                                 deleteConfirm.show(getSupportFragmentManager(), "delete");
                             }
                         });
+                        layout.setTag(contentsId);
+                        registerForContextMenu(layout);
                         showArea.addView(view);
                         break;
                     case "photo":
 
                         view = LayoutInflater.from(MainTipsAddActivity.this).inflate(R.layout.item_row_photo, null);
+                        layout = view.findViewById(R.id.layout_b);
                         ImageView image = view.findViewById(R.id.image);
                         ImageView delete3 = view.findViewById(R.id.delete);
                         if(contents.getImage().length > 0){
@@ -366,11 +421,14 @@ public class MainTipsAddActivity extends AppCompatActivity
                                 deleteConfirm.show(getSupportFragmentManager(), "delete");
                             }
                         });
+                        layout.setTag(contentsId);
+                        registerForContextMenu(layout);
                         showArea.addView(view);
                         break;
                     case "movie":
 
                         view = LayoutInflater.from(MainTipsAddActivity.this).inflate(R.layout.item_row_movie, null);
+                        layout = view.findViewById(R.id.layout_b);
                         VideoView movie = view.findViewById(R.id.movie);
                         if(contents.getMoviePath() != null){
                             try{
@@ -397,13 +455,46 @@ public class MainTipsAddActivity extends AppCompatActivity
                                 deleteConfirm.show(getSupportFragmentManager(), "delete");
                             }
                         });
+                        layout.setTag(contentsId);
+                        registerForContextMenu(layout);
                         showArea.addView(view);
                         break;
 
                 }
-
             }
         }
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        selectedContentsId = Integer.parseInt(v.getTag().toString());
+        getMenuInflater().inflate(R.menu.option_menu_2, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        //check mode
+        String type = checkType(selectedContentsId);
+
+        Common.log("type : " + type);
+
+        switch (item.getItemId()){
+            case R.id.option1:
+                //edit dialog open
+                DialogContents dialogContents = new DialogContents();
+                dialogContents.show(getSupportFragmentManager(), "dialog");
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    private String checkType(int tipsContentsId){
+        String type = "";
+        TipsContentsManager contentsManager = new TipsContentsManager(MainTipsAddActivity.this);
+        TipsContents contents = contentsManager.getListById(tipsContentsId);
+        return contents.getType();
     }
 
     //カメラ用のセッティング
@@ -966,4 +1057,6 @@ public class MainTipsAddActivity extends AppCompatActivity
 
 
     }
+
+
 }
