@@ -61,6 +61,7 @@ import java.util.List;
 public class MainTipsAddActivity extends AppCompatActivity
         implements DialogNextAction.DialogNextActionListener,
         DialogSelectGroup.DialogSelectGroupNoticeListener,
+        DialogContents.DialogContentsResultListener,
         DialogDeleteConfirm.DialogDeleteNoticeListener{
 
     /**
@@ -478,12 +479,14 @@ public class MainTipsAddActivity extends AppCompatActivity
         //check mode
         String type = checkType(selectedContentsId);
 
-        Common.log("type : " + type);
-
         switch (item.getItemId()){
             case R.id.option1:
                 //edit dialog open
                 DialogContents dialogContents = new DialogContents();
+                Bundle bundle = new Bundle();
+                bundle.putString("type", type);
+                bundle.putInt("id", selectedContentsId);
+                dialogContents.setArguments(bundle);
                 dialogContents.show(getSupportFragmentManager(), "dialog");
                 return true;
         }
@@ -1059,4 +1062,10 @@ public class MainTipsAddActivity extends AppCompatActivity
     }
 
 
+    @Override
+    public void DialogContentsResultNotice(String type) {
+        View view = findViewById(android.R.id.content);
+        Snackbar.make(view, "【" + type + "】" + getString(R.string.comment4), Snackbar.LENGTH_SHORT).show();
+        this.reloadContents(tipsId);
+    }
 }

@@ -26,6 +26,7 @@
     <string name="errorMsg3">タイトルを入力してください！</string>
     <string name="errorMsg4">画像データが登録されていません！</string>
     <string name="errorMsg5">HowToタイトルが未登録です！</string>
+    <string name="errorMsg6">IDの取得に失敗しました！</string>
 
     <!--dialog commnet-->
     <string name="comment1">削除してよろしいですか？</string>
