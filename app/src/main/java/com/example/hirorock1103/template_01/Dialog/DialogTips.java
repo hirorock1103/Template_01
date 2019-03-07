@@ -46,7 +46,6 @@ public class DialogTips extends AppCompatDialogFragment {
         }
 
         if(id > 0){
-
             //mode edit
             dialogTitle = getString(R.string.dialogTipsTitleEdit);
 

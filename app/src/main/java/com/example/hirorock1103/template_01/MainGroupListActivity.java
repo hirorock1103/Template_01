@@ -213,15 +213,25 @@ public class MainGroupListActivity extends AppCompatActivity
     public boolean onContextItemSelected(MenuItem item) {
 
 
-
         switch (item.getItemId()){
             case R.id.option1:
 
-                DialogDeleteConfirm deleteConfirm = new DialogDeleteConfirm();
+                //edit
+                DialogGroup dialogGroup = new DialogGroup();
                 Bundle bundle = new Bundle();
-                bundle.putString("dataType","tipsGroup");
-                bundle.putInt("id",selectedId);
-                deleteConfirm.setArguments(bundle);
+                bundle.putInt("id", selectedId);
+                dialogGroup.setArguments(bundle);
+                dialogGroup.show(getSupportFragmentManager(),"dialog");
+
+                return true;
+
+            case R.id.option2:
+
+                DialogDeleteConfirm deleteConfirm = new DialogDeleteConfirm();
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("dataType","tipsGroup");
+                bundle1.putInt("id",selectedId);
+                deleteConfirm.setArguments(bundle1);
                 deleteConfirm.show(getSupportFragmentManager(), "dialogDelete");
 
                 return true;

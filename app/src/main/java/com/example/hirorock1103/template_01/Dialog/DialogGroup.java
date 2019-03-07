@@ -93,6 +93,10 @@ public class DialogGroup extends AppCompatDialogFragment {
                             if(id > 0){
 
                                 //edit
+                                TipsGroup group = manager.getListById(id);
+                                group.setGroupName(titleEdit.getText().toString());
+
+                                resultId = manager.update(group);
 
 
                             }else{

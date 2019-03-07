@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.example.hirorock1103.template_01.DB.TipsContentsManager;
 import com.example.hirorock1103.template_01.DB.TipsGroupManager;
 import com.example.hirorock1103.template_01.DB.TipsManager;
 import com.example.hirorock1103.template_01.Dialog.DialogDeleteConfirm;
+import com.example.hirorock1103.template_01.Dialog.DialogTips;
 import com.example.hirorock1103.template_01.Master.Tips;
 import com.example.hirorock1103.template_01.Master.TipsContents;
 import com.example.hirorock1103.template_01.Master.TipsGroup;
@@ -30,7 +32,8 @@ import com.example.hirorock1103.template_01.Master.TipsGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainTipsListActivity extends AppCompatActivity implements DialogDeleteConfirm.DialogDeleteNoticeListener {
+public class MainTipsListActivity extends AppCompatActivity
+        implements DialogDeleteConfirm.DialogDeleteNoticeListener,DialogTips.DialogTipsNoticeListener {
 
     private int groupId = 0;
 
@@ -39,6 +42,9 @@ public class MainTipsListActivity extends AppCompatActivity implements DialogDel
     private MyAdapter adapter;
 
     private int selectedItemid;
+
+    //float button
+    private FloatingActionButton fb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +70,10 @@ public class MainTipsListActivity extends AppCompatActivity implements DialogDel
 
         setTitle(groupName != null && groupName.isEmpty() == false ? getString(R.string.title19) + "(" + groupName + ")" : getString(R.string.title19));
 
+        fb = findViewById(R.id.fb);
         recyclerView = findViewById(R.id.recycler_view);
+
+        setListener();
 
         TipsManager manager = new TipsManager(this);
         tipsList = manager.getList(groupId);
@@ -74,6 +83,22 @@ public class MainTipsListActivity extends AppCompatActivity implements DialogDel
 
         recyclerView.setLayoutManager(llm);
         recyclerView.setAdapter(adapter);
+
+
+    }
+
+    private void setListener(){
+        fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*
+                DialogTips dialogTips = new DialogTips();
+                dialogTips.show(getSupportFragmentManager(), "dialog");
+                */
+                Intent intent = new Intent(MainTipsListActivity.this, MainTipsAddActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -92,6 +117,11 @@ public class MainTipsListActivity extends AppCompatActivity implements DialogDel
         tipsList = manager.getList(groupId);
         adapter.setList(tipsList);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void DialogTipsNoticeResult() {
+        //result from tips
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{

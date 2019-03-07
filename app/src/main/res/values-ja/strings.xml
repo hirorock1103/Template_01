@@ -38,6 +38,7 @@
 
     <!--menu_title-->
     <string name="menu_title1">編集する</string>
+    <string name="menu_title2">削除する</string>
 
     <!--Comment-->
     <string name="title1">Select your next action!</string>
