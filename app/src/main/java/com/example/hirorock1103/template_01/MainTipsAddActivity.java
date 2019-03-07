@@ -1,7 +1,10 @@
 package com.example.hirorock1103.template_01;
 
+import android.Manifest;
 import android.animation.ObjectAnimator;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,9 +14,12 @@ import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.CursorLoader;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -960,43 +966,36 @@ public class MainTipsAddActivity extends AppCompatActivity
 
             }else if(requestCode == RESULT_PICK_MOVIE){
 
-                //View view = findViewById(android.R.id.content);
                 Uri uri = data.getData();
-                String path = uri.toString();
-                //other path
-                String path1 = uri.getPath();
-                String path2 = getRealPathFromURI(uri);
-                String path3 = new File(path).getPath();
-                //
-                videoPath = path;
+                //String path = uri.toString();//このパスだとNGになる
 
-                Common.log("videoPath:" + videoPath);
 
-                /*
-                *
-                * String UrlPath = "android.resource://" + getPackageName() + "/"+ R.raw.your_video_name;
-                * Uri video_uri = Uri.parse(UrlPath);
-                * */
+                String path = null;
+                String scheme = uri.getScheme();
+                if ("file".equals(scheme)) {
+                    path = uri.getPath();
+                } else if("content".equals(scheme)) {
+                    ContentResolver contentResolver = this.getContentResolver();
+                    Cursor cursor = contentResolver.query(uri, new String[] { MediaStore.MediaColumns.DATA }, null, null, null);
+                    if (cursor != null) {
+                        cursor.moveToFirst();
+                        path = cursor.getString(0);
+                        cursor.close();
+                    }
+                }
 
-                //path = path;
-
-                /* confirm
-                Common.log("path:" + path);
-                Common.log("uri.toString:" + uri.toString());
-                Common.log("uri.getpath:" + uri.getPath());
-                Common.log("uri.getEncodedPath:" + uri.getEncodedPath());
-
-                Common.log("1:" + Uri.parse(path).toString());
-                Common.log("2:" + Uri.parse(uri.toString()).toString());
-                Common.log("3:" + Uri.parse(uri.getPath()).toString());
-                Common.log("4:" + Uri.parse(uri.getEncodedPath()).toString());
+                /**
+                File file = new File(path);
+                Uri newUri = FileProvider.getUriForFile(this,"com.example.hirorock1103.tipsapp.fileprovider",file);
                 */
+
+                videoPath = path;
 
                 //play video
                 try{
 
                     videoConfirmView.setVisibility(View.VISIBLE);
-                    videoConfirmView.setVideoURI(Uri.parse(path.toString()));
+                    videoConfirmView.setVideoURI(uri);
                     videoConfirmView.setMediaController(new MediaController(MainTipsAddActivity.this));
                     videoConfirmView.seekTo(1);
 
@@ -1030,9 +1029,19 @@ public class MainTipsAddActivity extends AppCompatActivity
 
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(requestCode == 1010){
+            Common.log("1010!1");
+        }
+
+    }
+
     private String getRealPathFromURI(Uri contentUri) {
         String[] proj = { MediaStore.Images.Media.DATA };
-        CursorLoader loader = new CursorLoader(MainTipsAddActivity.this, contentUri, proj, null, null, null);
+        CursorLoader loader = new CursorLoader(this, contentUri, proj, null, null, null);
         Cursor cursor = loader.loadInBackground();
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();

@@ -24,6 +24,17 @@
         <activity android:name=".MainTipsListActivity" />
         <activity android:name=".MainTipsAddActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity android:name=".MainGroupListActivity"></activity>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.hirorock1103.tipsapp.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/paths"
+                />
+        </provider>
     </application>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -31,4 +42,5 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+
 </manifest>

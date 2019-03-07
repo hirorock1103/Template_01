@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path
+        name="mytips"
+        path="."/>
+    <external-files-path
+        name="mytips2"
+        path="."/>
+</paths>
