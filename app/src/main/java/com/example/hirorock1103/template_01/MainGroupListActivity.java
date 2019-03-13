@@ -198,15 +198,13 @@ public class MainGroupListActivity extends AppCompatActivity
             return groupList.size();
         }
 
-
-
     }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         selectedId = Integer.parseInt(v.getTag().toString());
-        getMenuInflater().inflate(R.menu.option_menu_1, menu);
+        getMenuInflater().inflate(R.menu.option_menu_3, menu);
     }
 
     @Override

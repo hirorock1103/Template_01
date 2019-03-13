@@ -18,6 +18,8 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.ActionBar;
@@ -493,7 +495,7 @@ public class MainTipsAddActivity extends AppCompatActivity
                 bundle.putString("type", type);
                 bundle.putInt("id", selectedContentsId);
                 dialogContents.setArguments(bundle);
-                dialogContents.show(getSupportFragmentManager(), "dialog");
+                dialogContents.show(getSupportFragmentManager(), "dialogContents");
                 return true;
         }
         return super.onContextItemSelected(item);
@@ -848,7 +850,7 @@ public class MainTipsAddActivity extends AppCompatActivity
         if(resultCode == RESULT_OK){
 
 
-            if (requestCode == RESULT_CAMERA) {
+            if (requestCode == RESULT_CAMERA || requestCode == DialogContents.RESULT_CAMERA_FROM_FRAGMENT) {
                 try{
                     if( data.getExtras() != null){
                         // dataから画像を取り出す
@@ -881,7 +883,16 @@ public class MainTipsAddActivity extends AppCompatActivity
                         byteImage = stream.toByteArray();
                         stream.close();
 
-                        photoImageConfirmView.setImageBitmap(bitmap);
+                        //find fragment
+                        Fragment fragment = getSupportFragmentManager().findFragmentByTag("dialogContents");
+                        if(fragment != null){
+                            DialogContents frag = (DialogContents)fragment;
+                            frag.setImage(bitmap,byteImage);
+                        }else{
+
+                            photoImageConfirmView.setImageBitmap(bitmap);
+
+                        }
 
                         /*
                         photoShowArea.removeAllViews();
@@ -895,7 +906,7 @@ public class MainTipsAddActivity extends AppCompatActivity
                 }catch(Exception e){
                     Common.log(e.getMessage());
                 }
-            }else if(requestCode == RESULT_PICK_IMAGE){
+            }else if(requestCode == RESULT_PICK_IMAGE || requestCode == DialogContents.RESULT_PICK_IMAGE_FROM_FRAGMENT){
 
                 Uri imageUri = data.getData();
                 InputStream inputStream;
@@ -952,8 +963,16 @@ public class MainTipsAddActivity extends AppCompatActivity
                     photoShowArea.addView(imageView);
                     */
 
-                    photoImageConfirmView.setImageBitmap(img);
+                    //find fragment
+                    Fragment fragment = getSupportFragmentManager().findFragmentByTag("dialogContents");
+                    if(fragment != null){
+                        DialogContents frag = (DialogContents)fragment;
+                        frag.setImage(img,byteImage);
+                    }else{
+                        photoImageConfirmView.setImageBitmap(img);
+                    }
 
+                    
                     //cardview.setVisibility(View.VISIBLE);
 
                 }catch(FileNotFoundException e){
@@ -1023,6 +1042,14 @@ public class MainTipsAddActivity extends AppCompatActivity
                     videoPath = "";
                 }
                 //String path = Utils.getRealPathFromURI(videoUri, this);
+            }else if(requestCode == DialogContents.RESULT_CAMERA_FROM_FRAGMENT){
+                Common.log("RESULT_CAMERA_FROM_FRAGMENT");
+
+
+
+
+            }else if(requestCode == DialogContents.RESULT_PICK_IMAGE_FROM_FRAGMENT){
+
 
             }
         }
@@ -1074,7 +1101,9 @@ public class MainTipsAddActivity extends AppCompatActivity
     @Override
     public void DialogContentsResultNotice(String type) {
         View view = findViewById(android.R.id.content);
+
         Snackbar.make(view, "【" + type + "】" + getString(R.string.comment4), Snackbar.LENGTH_SHORT).show();
         this.reloadContents(tipsId);
+
     }
 }
