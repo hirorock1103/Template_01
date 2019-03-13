@@ -972,7 +972,6 @@ public class MainTipsAddActivity extends AppCompatActivity
                         photoImageConfirmView.setImageBitmap(img);
                     }
 
-                    
                     //cardview.setVisibility(View.VISIBLE);
 
                 }catch(FileNotFoundException e){
@@ -983,10 +982,11 @@ public class MainTipsAddActivity extends AppCompatActivity
                     Common.log(e.getMessage());
                 }
 
-            }else if(requestCode == RESULT_PICK_MOVIE){
+            }else if(requestCode == RESULT_PICK_MOVIE || requestCode == DialogContents.RESULT_PICK_VIDEO_FROM_FRAGMENT){
 
                 Uri uri = data.getData();
                 //String path = uri.toString();//このパスだとNGになる
+
 
 
                 String path = null;
@@ -1010,47 +1010,56 @@ public class MainTipsAddActivity extends AppCompatActivity
 
                 videoPath = path;
 
-                //play video
-                try{
+                Fragment fragment = getSupportFragmentManager().findFragmentByTag("dialogContents");
+                if(fragment != null){
+                    DialogContents frag = (DialogContents)fragment;
+                    frag.setMovie(path);
+                }else{
 
-                    videoConfirmView.setVisibility(View.VISIBLE);
-                    videoConfirmView.setVideoURI(uri);
-                    videoConfirmView.setMediaController(new MediaController(MainTipsAddActivity.this));
-                    videoConfirmView.seekTo(1);
+                    //play video
+                    try{
 
-                }catch (Exception e){
-                    Common.log(e.getMessage());
-                    videoPath = "";
+                        videoConfirmView.setVisibility(View.VISIBLE);
+                        videoConfirmView.setVideoURI(uri);
+                        videoConfirmView.setMediaController(new MediaController(MainTipsAddActivity.this));
+                        videoConfirmView.seekTo(1);
+
+                    }catch (Exception e){
+                        Common.log(e.getMessage());
+                        videoPath = "";
+                    }
+
                 }
 
 
-            }else if(requestCode == CAMERA_REQUEST_CODE_VEDIO){
+            }else if(requestCode == CAMERA_REQUEST_CODE_VEDIO || requestCode == DialogContents.RESULT_MOVIE_FROM_FRAGMENT){
                 Common.log("camera");
                 //https://stackoverflow.com/questions/10278865/record-save-and-play-a-video-in-android
                 Uri uri = data.getData();
                 String path = uri.toString();
                 videoPath = path;
-                try{
 
-                    videoConfirmView.setVisibility(View.VISIBLE);
-                    videoConfirmView.setVideoURI(Uri.parse(path.toString()));
-                    videoConfirmView.setMediaController(new MediaController(MainTipsAddActivity.this));
-                    videoConfirmView.seekTo(1);
+                Fragment fragment = getSupportFragmentManager().findFragmentByTag("dialogContents");
+                if(fragment != null){
+                    DialogContents frag = (DialogContents)fragment;
+                    frag.setMovie(path);
+                }else{
 
-                }catch (Exception e){
-                    Common.log(e.getMessage());
-                    videoPath = "";
+                    try{
+
+                        videoConfirmView.setVisibility(View.VISIBLE);
+                        videoConfirmView.setVideoURI(Uri.parse(path.toString()));
+                        videoConfirmView.setMediaController(new MediaController(MainTipsAddActivity.this));
+                        videoConfirmView.seekTo(1);
+
+                    }catch (Exception e){
+                        Common.log(e.getMessage());
+                        videoPath = "";
+                    }
+
                 }
+
                 //String path = Utils.getRealPathFromURI(videoUri, this);
-            }else if(requestCode == DialogContents.RESULT_CAMERA_FROM_FRAGMENT){
-                Common.log("RESULT_CAMERA_FROM_FRAGMENT");
-
-
-
-
-            }else if(requestCode == DialogContents.RESULT_PICK_IMAGE_FROM_FRAGMENT){
-
-
             }
         }
 

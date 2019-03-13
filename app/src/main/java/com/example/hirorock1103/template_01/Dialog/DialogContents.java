@@ -33,6 +33,8 @@ public class DialogContents extends AppCompatDialogFragment {
 
     public final static int RESULT_CAMERA_FROM_FRAGMENT = 9001;
     public final static int RESULT_PICK_IMAGE_FROM_FRAGMENT = 9002;
+    public final static int RESULT_PICK_VIDEO_FROM_FRAGMENT = 9003;
+    public final static int RESULT_MOVIE_FROM_FRAGMENT = 9004;
 
     private String type;
     private int id;
@@ -46,7 +48,7 @@ public class DialogContents extends AppCompatDialogFragment {
     private byte[] byteImage;
     //movie
     private VideoView videoView;
-
+    private String moviePath;
     //lisitener
     private DialogContentsResultListener listener;
 
@@ -56,7 +58,13 @@ public class DialogContents extends AppCompatDialogFragment {
     }
 
     public void setMovie(String path){
+        videoView.setVisibility(View.VISIBLE);
+        videoView.requestFocus();
+        videoView.setMediaController(new MediaController(getActivity()));
+        videoView.setVideoURI(Uri.parse(path));
+        videoView.seekTo(1);
 
+        moviePath = path;
     }
 
     public interface DialogContentsResultListener{
@@ -178,14 +186,43 @@ public class DialogContents extends AppCompatDialogFragment {
                     layoutcancl.setVisibility(View.GONE);
                 }
 
-
                 videoView = view.findViewById(R.id.video);
                 videoView.setVisibility(View.VISIBLE);
                 videoView.requestFocus();
-                //String path = contents.getMoviePath();
-                //videoView.setMediaController(new MediaController(getActivity()));
-                //videoView.setVideoURI(Uri.parse(path));
-                //videoView.seekTo(1);
+                videoView.setMediaController(new MediaController(getActivity()));
+                videoView.setVideoURI(Uri.parse(contents.getMoviePath()));
+                videoView.seekTo(1);
+                //videoView.requestFocus();
+
+                Button btFindFile = view.findViewById(R.id.bt_find_movie);
+                btFindFile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent moviePickerIntent = new Intent(Intent.ACTION_PICK);
+
+                        //image file directory
+                        File picDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES);
+                        String path = picDirectory.getPath();
+
+                        //uri
+                        Uri data = Uri.parse(path);
+                        moviePickerIntent.setDataAndType(data, "video/*");
+                        getActivity().startActivityForResult(moviePickerIntent, RESULT_PICK_VIDEO_FROM_FRAGMENT);
+                    }
+                });
+                Button btTakeMovie = view.findViewById(R.id.bt_take_movie);
+                btTakeMovie.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                        if (takeVideoIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                            getActivity().startActivityForResult(takeVideoIntent,
+                                    RESULT_MOVIE_FROM_FRAGMENT);
+                        }
+                    }
+                });
+
+
                 break;
 
              default:
@@ -249,6 +286,11 @@ public class DialogContents extends AppCompatDialogFragment {
                                         break;
 
                                     case "movie" :
+
+                                        if(moviePath != null && moviePath.isEmpty() == false){
+                                            currentContents.setMoviePath(moviePath);
+                                            resultId = contentsManager.updateTipsContents(currentContents);
+                                        }
 
                                         break;
 
