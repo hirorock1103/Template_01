@@ -20,6 +20,7 @@
     <string name="tips_group">Group </string>
     <string name="next_action">Next Action</string>
     <string name="finish_register">Change Group</string>
+    <string name="dialogTitleExpandImage">Expand Image</string>
 
     <!--error msg-->
     <string name="errorMsg1">値が選択されていません。</string>

@@ -49,6 +49,7 @@ import com.example.hirorock1103.template_01.DB.TipsGroupManager;
 import com.example.hirorock1103.template_01.DB.TipsManager;
 import com.example.hirorock1103.template_01.Dialog.DialogContents;
 import com.example.hirorock1103.template_01.Dialog.DialogDeleteConfirm;
+import com.example.hirorock1103.template_01.Dialog.DialogExpandImage;
 import com.example.hirorock1103.template_01.Dialog.DialogGroup;
 import com.example.hirorock1103.template_01.Dialog.DialogNextAction;
 import com.example.hirorock1103.template_01.Dialog.DialogSelectGroup;
@@ -355,7 +356,7 @@ public class MainTipsAddActivity extends AppCompatActivity
         List<TipsContents> list = manager.getListByTipsId(tipsId);
 
         if(list.size() > 0){
-            for (TipsContents contents : list){
+            for (final TipsContents contents : list){
                 View view;
                 final int contentsId = contents.getId();
                 ConstraintLayout layout;
@@ -417,6 +418,18 @@ public class MainTipsAddActivity extends AppCompatActivity
 
                             Bitmap bitmap = BitmapFactory.decodeByteArray(contents.getImage(), 0, contents.getImage().length);
                             image.setImageBitmap(bitmap);
+                            //set click listener
+                            image.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    //dialog
+                                    DialogExpandImage dialogExpandImage = new DialogExpandImage();
+                                    Bundle bundle = new Bundle();
+                                    bundle.putByteArray("image",contents.getImage());
+                                    dialogExpandImage.setArguments(bundle);
+                                    dialogExpandImage.show(getSupportFragmentManager(), "dialog");
+                                }
+                            });
 
                         }
                         delete3.setOnClickListener(new View.OnClickListener() {
