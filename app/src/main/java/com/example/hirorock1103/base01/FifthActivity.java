@@ -1,21 +1,18 @@
-package com.example.hirorock1103.template_01;
+package com.example.hirorock1103.base01;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-public class ForthActivity extends AppCompatActivity {
-
+public class FifthActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forth);
+        setContentView(R.layout.activity_fifth);
 
-
-        //set backbutton to actionbar
-        ActionBar actionBar = this.getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
 
@@ -33,4 +30,5 @@ public class ForthActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

@@ -1,4 +1,4 @@
-package com.example.hirorock1103.template_01.DB;
+package com.example.hirorock1103.base01.DB;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

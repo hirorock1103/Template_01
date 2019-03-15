@@ -1,4 +1,4 @@
-package com.example.hirorock1103.template_01.Dialog;
+package com.example.hirorock1103.base01.Dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.hirorock1103.template_01.R;
+import com.example.hirorock1103.base01.R;
 
 public class DialogSourceView extends AppCompatDialogFragment {
 
