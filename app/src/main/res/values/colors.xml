@@ -3,10 +3,6 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorWhite">#FFFFFF</color>
-    <color name="colorGray">#CCCCCC</color>
     <color name="layoutColor">#FAFAFA</color>
     <color name="colorRipple">#A9A9F5</color>
-    <color name="borderColor">#50b96c</color>
-    <color name="background1">#eeffe8</color>
 </resources>

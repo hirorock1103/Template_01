@@ -149,19 +149,35 @@
         app:layout_constraintTop_toBottomOf="@+id/sample3"
         app:layout_constraintLeft_toLeftOf="@+id/title5"/>
 
-    <Button
-        android:id="@+id/sample5"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:background="@drawable/ripple_effect"
-        android:text="ripple"
-        android:textColor="@color/colorWhite"
-        app:layout_constraintLeft_toLeftOf="@+id/title5"
-        app:layout_constraintTop_toBottomOf="@+id/sample4"
+        android:id="@+id/sample5"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:background="@drawable/repple_effect_dark"
+        app:layout_constraintTop_toBottomOf="@id/sample4"
+        app:layout_constraintLeft_toLeftOf="@id/sample4"
 
-        />
+        >
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/ic_launcher_round"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="#fff"
+            android:layout_gravity="center_vertical"
+            android:text="PUSH"
+            />
+
+
+    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>
