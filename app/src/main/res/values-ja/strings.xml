@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Tipsアプリ</string>
+    <string name="app_name">Tips</string>
     <string name="create_tips">tips作成</string>
-    <string name="on_progress">Tips List</string>
-    <string name="create_tip_group">TipsGroup</string>
+    <string name="on_progress">tipsリスト</string>
+    <string name="create_tip_group">Tipsグループ</string>
     <string name="think_later">think later!</string>
     <!--dialog-->
     <string name="dialogTipsTitleAdd">Add Tips</string>
@@ -15,18 +15,18 @@
     <string name="contents_type_text">write text</string>
     <string name="contents_type_image">take image</string>
     <string name="contents_type_movie">take movie</string>
-    <string name="tips_add_form_title">How to </string>
+    <string name="tips_add_form_title">Tips title </string>
     <string name="tips_group">Group </string>
     <string name="next_action">Next Action</string>
     <string name="finish_register">Change Group</string>
-    <string name="dialogTitleExpandImage">Expand Image</string>
+    <string name="dialogTitleExpandImage">画像拡大</string>
 
     <!--error msg-->
     <string name="errorMsg1">値が選択されていません。</string>
     <string name="errorMsg2">値が空白です。</string>
     <string name="errorMsg3">タイトルを入力してください！</string>
     <string name="errorMsg4">画像データが登録されていません！</string>
-    <string name="errorMsg5">HowToタイトルが未登録です！</string>
+    <string name="errorMsg5">Tipsタイトルが未登録です！</string>
     <string name="errorMsg6">IDの取得に失敗しました！</string>
 
     <!--dialog commnet-->
@@ -45,7 +45,7 @@
     <string name="title1">Select your next action!</string>
     <string name="title2">Next, put step title</string>
     <string name="title3">OK</string>
-    <string name="title4">How to title is registered</string>
+    <string name="title4">Tips title is registered</string>
     <string name="title5">Next, put free text</string>
     <string name="title6">OK</string>
     <string name="title7">Free Text Here!</string>

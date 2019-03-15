@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.hirorock1103.template_01.Common.Common;
@@ -29,7 +28,6 @@ import com.example.hirorock1103.template_01.Master.Tips;
 import com.example.hirorock1103.template_01.Master.TipsContents;
 import com.example.hirorock1103.template_01.Master.TipsGroup;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainTipsListActivity extends AppCompatActivity

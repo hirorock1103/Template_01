@@ -1,17 +1,12 @@
 package com.example.hirorock1103.template_01;
 
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
 
-import com.example.hirorock1103.template_01.Common.Common;
 import com.example.hirorock1103.template_01.Fragments.FragMemberList;
 
 public class SecondActivity extends AppCompatActivity {

@@ -23,7 +23,6 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.example.hirorock1103.template_01.DB.TipsContentsManager;
-import com.example.hirorock1103.template_01.MainTipsAddActivity;
 import com.example.hirorock1103.template_01.Master.TipsContents;
 import com.example.hirorock1103.template_01.R;
 

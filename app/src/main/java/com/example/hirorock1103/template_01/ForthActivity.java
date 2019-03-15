@@ -4,9 +4,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
-
-import com.example.hirorock1103.template_01.R;
 
 public class ForthActivity extends AppCompatActivity {
 

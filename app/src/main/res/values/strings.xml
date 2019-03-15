@@ -16,38 +16,38 @@
     <string name="contents_type_text">text</string>
     <string name="contents_type_image">image</string>
     <string name="contents_type_movie">movie</string>
-    <string name="tips_add_form_title">How to </string>
+    <string name="tips_add_form_title">Tips title </string>
     <string name="tips_group">Group </string>
     <string name="next_action">Next Action</string>
     <string name="finish_register">Change Group</string>
     <string name="dialogTitleExpandImage">Expand Image</string>
 
     <!--error msg-->
-    <string name="errorMsg1">値が選択されていません。</string>
-    <string name="errorMsg2">値が空白です。</string>
-    <string name="errorMsg3">タイトルを入力してください！</string>
-    <string name="errorMsg4">画像データが登録されていません！</string>
-    <string name="errorMsg5">HowToタイトルが未登録です！</string>
-    <string name="errorMsg6">IDの取得に失敗しました！</string>
+    <string name="errorMsg1">you need to select value</string>
+    <string name="errorMsg2">value is empty</string>
+    <string name="errorMsg3">Please input title first！</string>
+    <string name="errorMsg4">There is no image！</string>
+    <string name="errorMsg5">Please input title first！</string>
+    <string name="errorMsg6">failed to get ID</string>
 
 
     <!--dialog commnet-->
-    <string name="comment1">削除してよろしいですか？</string>
-    <string name="comment2">が選択されました</string>
-    <string name="comment3">対象データを削除しました</string>
-    <string name="comment4">更新しました</string>
+    <string name="comment1">item will be deleted,OK?</string>
+    <string name="comment2">is selected</string>
+    <string name="comment3">Data has been deleted</string>
+    <string name="comment4">updated!</string>
     <string name="comment5">タイトルの編集を有効にしました</string>
-    <string name="comment6">登録しました</string>
+    <string name="comment6">Data is registered!</string>
 
     <!--menu_title-->
-    <string name="menu_title1">編集する</string>
-    <string name="menu_title2">削除する</string>
+    <string name="menu_title1">edit</string>
+    <string name="menu_title2">delete</string>
 
     <!--Comment-->
     <string name="title1">Select your next action!</string>
     <string name="title2">Next, put step title</string>
     <string name="title3">OK</string>
-    <string name="title4">How to title is registered</string>
+    <string name="title4">Tips title is registered</string>
     <string name="title5">Next, put free text</string>
     <string name="title6">OK</string>
     <string name="title7">Free Text Here!</string>
@@ -61,7 +61,7 @@
     <string name="title15">PHOTO</string>
     <string name="title16">MOVIE</string>
     <string name="title17">Tips GROUP</string>
-    <string name="title18">Group名の管理</string>
+    <string name="title18">Group</string>
     <string name="title19">Tips List</string>
     <string name="title20">Create New Tips</string>
     <string name="title21">Contents Edit</string>
