@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.hirorock1103.template_01">
+    package="com.design_phantom.hirorock1103.template_01">
 
     <application
         android:allowBackup="true"
@@ -9,24 +9,24 @@
         android:roundIcon="@drawable/web_hi_res_512"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.design_phantom.hirorock1103.template_01.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SecondActivity" />
-        <activity android:name=".ThirdActivity" />
-        <activity android:name=".ForthActivity" />
-        <activity android:name=".FifthActivity" />
-        <activity android:name=".MainSampleActivity" />
-        <activity android:name=".MainTipsListActivity" />
-        <activity android:name=".MainTipsAddActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
-        <activity android:name=".MainGroupListActivity"></activity>
+        <activity android:name="com.design_phantom.hirorock1103.template_01.SecondActivity" />
+        <activity android:name="com.design_phantom.hirorock1103.template_01.ThirdActivity" />
+        <activity android:name="com.design_phantom.hirorock1103.template_01.ForthActivity" />
+        <activity android:name="com.design_phantom.hirorock1103.template_01.FifthActivity" />
+        <activity android:name="com.design_phantom.hirorock1103.template_01.MainSampleActivity" />
+        <activity android:name="com.design_phantom.hirorock1103.template_01.MainTipsListActivity" />
+        <activity android:name="com.design_phantom.hirorock1103.template_01.MainTipsAddActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity android:name="com.design_phantom.hirorock1103.template_01.MainGroupListActivity"></activity>
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.example.hirorock1103.tipsapp.fileprovider"
+            android:authorities="com.design_phantom.hirorock1103.tipsapp.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true"
             >

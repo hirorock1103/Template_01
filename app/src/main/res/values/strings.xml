@@ -9,6 +9,7 @@
     <string name="dialogTipsTitleAdd">Add Tips</string>
     <string name="dialogTipsTitleEdit">Edit Tips</string>
     <string name="dialogNextAction">Select Next Action</string>
+    <string name="GroupAddtitle">add Group</string>
     <string name="cancel">cancel</string>
     <string name="OK">OK</string>
     <string name="add_complete_msg">add_complete_msg</string>
@@ -29,6 +30,8 @@
     <string name="errorMsg4">There is no image！</string>
     <string name="errorMsg5">Please input title first！</string>
     <string name="errorMsg6">failed to get ID</string>
+    <string name="errorMsg7">you need to select file</string>
+    <string name="errorMsg8">Fail！</string>
 
 
     <!--dialog commnet-->

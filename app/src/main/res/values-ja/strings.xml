@@ -8,6 +8,7 @@
     <string name="dialogTipsTitleAdd">Add Tips</string>
     <string name="dialogTipsTitleEdit">Edit Tips</string>
     <string name="dialogNextAction">Select Next Action</string>
+    <string name="GroupAddtitle">グループ新規追加</string>
     <string name="cancel">cancel</string>
     <string name="OK">OK</string>
     <string name="add_complete_msg">登録が完了しました。</string>
@@ -28,6 +29,8 @@
     <string name="errorMsg4">画像データが登録されていません！</string>
     <string name="errorMsg5">Tipsタイトルが未登録です！</string>
     <string name="errorMsg6">IDの取得に失敗しました！</string>
+    <string name="errorMsg7">ファイルが選択されていません！</string>
+    <string name="errorMsg8">Fail！</string>
 
     <!--dialog commnet-->
     <string name="comment1">削除してよろしいですか？</string>

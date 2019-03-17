@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.hirorock1103.template_01.MainGroupListActivity">
+    tools:context="com.design_phantom.hirorock1103.template_01.MainGroupListActivity">
 
 </android.support.constraint.ConstraintLayout>
