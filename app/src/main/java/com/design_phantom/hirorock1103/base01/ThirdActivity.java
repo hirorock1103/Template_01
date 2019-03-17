@@ -1,4 +1,4 @@
-package com.example.hirorock1103.base01;
+package com.design_phantom.hirorock1103.base01;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.hirorock1103.base01.Dialog.DialogSourceView;
+import com.design_phantom.hirorock1103.base01.Dialog.DialogSourceView;
 
 public class ThirdActivity extends AppCompatActivity {
 
@@ -18,13 +18,13 @@ public class ThirdActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_third);
+        setContentView(com.design_phantom.hirorock1103.base01.R.layout.activity_third);
 
         //set backbutton to action bar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        sample = findViewById(R.id.sample);
+        sample = findViewById(com.design_phantom.hirorock1103.base01.R.id.sample);
         sample.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,7 +33,7 @@ public class ThirdActivity extends AppCompatActivity {
             }
         });
 
-        layoutBt = findViewById(R.id.sample5);
+        layoutBt = findViewById(com.design_phantom.hirorock1103.base01.R.id.sample5);
         layoutBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

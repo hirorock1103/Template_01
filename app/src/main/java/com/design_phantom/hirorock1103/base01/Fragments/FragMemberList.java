@@ -1,4 +1,4 @@
-package com.example.hirorock1103.base01.Fragments;
+package com.design_phantom.hirorock1103.base01.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,10 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.hirorock1103.base01.Common.Common;
-import com.example.hirorock1103.base01.DB.MemberManager;
-import com.example.hirorock1103.base01.Member.Member;
-import com.example.hirorock1103.base01.R;
+import com.design_phantom.hirorock1103.base01.Common.Common;
+import com.design_phantom.hirorock1103.base01.DB.MemberManager;
+import com.design_phantom.hirorock1103.base01.Master.Member;
+import com.design_phantom.hirorock1103.base01.R;
 
 import java.util.List;
 

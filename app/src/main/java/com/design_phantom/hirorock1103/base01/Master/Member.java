@@ -1,4 +1,4 @@
-package com.example.hirorock1103.base01.Member;
+package com.design_phantom.hirorock1103.base01.Master;
 
 public class Member {
     private int id;

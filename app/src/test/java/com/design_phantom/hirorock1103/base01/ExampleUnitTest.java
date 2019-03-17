@@ -1,4 +1,4 @@
-package com.example.hirorock1103.base01;
+package com.design_phantom.hirorock1103.base01;
 
 import org.junit.Test;
 

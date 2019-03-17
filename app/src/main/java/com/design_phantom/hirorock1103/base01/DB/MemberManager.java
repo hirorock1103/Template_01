@@ -1,12 +1,12 @@
-package com.example.hirorock1103.base01.DB;
+package com.design_phantom.hirorock1103.base01.DB;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.hirorock1103.base01.Common.Common;
-import com.example.hirorock1103.base01.Member.Member;
+import com.design_phantom.hirorock1103.base01.Common.Common;
+import com.design_phantom.hirorock1103.base01.Master.Member;
 
 import java.util.ArrayList;
 import java.util.Date;

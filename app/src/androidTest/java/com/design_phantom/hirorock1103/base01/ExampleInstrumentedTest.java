@@ -1,4 +1,4 @@
-package com.example.hirorock1103.base01;
+package com.design_phantom.hirorock1103.base01;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

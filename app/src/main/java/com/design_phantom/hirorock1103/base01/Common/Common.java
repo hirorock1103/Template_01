@@ -1,4 +1,4 @@
-package com.example.hirorock1103.base01.Common;
+package com.design_phantom.hirorock1103.base01.Common;
 
 import android.app.Activity;
 import android.content.Context;
